@@ -1,0 +1,31 @@
+Customer Profile: CUST-100008
+Name: [PERSON]too1h4 1Chmep[/PERSON]
+Email: [EMAIL_ADDRESS]tazx1z@example.com[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER](454)472-3010x37224[/PHONE_NUMBER]
+DOB: [DATETIME]0808-03-30[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]990-33-5195[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]gRAg[/LOCATION] [LOCATION]uICD IZlTK[/LOCATION], [LOCATION]KPTD 5ZhEX[/LOCATION], [LOCATION]Q4[/LOCATION] [LOCATION]K2mg2[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-515492 | savings | Acct#: 9981691030 | Balance: $242,104.74 | Opened: 2019-07-12 | Status: active
+  ACCT-282313 | checking | Acct#: 8203447752 | Balance: $205,049.39 | Opened: 2021-06-27 | Status: active
+
+=== Credit Cards ===
+  CARD-676843 | Visa Classic | Card#: [CREDIT_CARD]2089233571017782[/CREDIT_CARD] | Exp: 07/27 | Limit: $15,000 | Balance: $6,671.45 | Available: $8,328.55 | Points: 36,645 | Status: active
+
+=== Recent Transactions ===
+  2026-03-09 | Shell | -$55.47 | gas_station | completed
+  2026-02-24 | N/A | +$4,998.03 | refund | completed
+  2026-02-23 | Chipotle | -$196.60 | restaurant | completed
+  2026-02-19 | N/A | -$295.31 | transfer_out | completed
+  2026-02-13 | N/A | -$1,401.07 | transfer_out | completed
+  2026-02-09 | Spotify | -$4,589.69 | subscription | completed
+  2026-02-05 | N/A | +$1,334.47 | transfer_in | completed
+  2026-01-23 | Chipotle | -$50.36 | restaurant | completed
+  2026-01-23 | N/A | -$1,247.62 | investment | completed
+  2026-01-22 | Spotify | -$300.13 | subscription | completed
+  2026-01-18 | N/A | -$901.13 | transfer_out | completed
+  2026-01-16 | AMC Theatres | -$4,046.97 | entertainment | completed
+  2026-01-16 | Allstate | -$2,399.72 | insurance | completed
+  2026-01-04 | N/A | -$1,916.62 | transfer_out | completed
+  2026-01-01 | Nintendo | -$255.56 | entertainment | completed

@@ -1,0 +1,36 @@
+Customer Profile: CUST-100005
+Name: [PERSON]CwQd XM27C[/PERSON]
+Email: [EMAIL_ADDRESS]3aiyR4Y@example.com[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER]566-724-4561x823[/PHONE_NUMBER]
+DOB: [DATETIME]3132-06-21[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]616-93-6158[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]1Re[/LOCATION] [LOCATION]fyco9t6b AiZiM[/LOCATION], [LOCATION]Itl9c oH1Mr[/LOCATION], [LOCATION]LM[/LOCATION] [LOCATION]BGLfg[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-205428 | checking | Acct#: 5725314249 | Balance: $179,381.91 | Opened: 2017-12-04 | Status: active
+
+=== Credit Cards ===
+  CARD-265613 | Mastercard Black | Card#: [CREDIT_CARD]2760299571345600[/CREDIT_CARD] | Exp: 07/29 | Limit: $2,000 | Balance: $1,543.23 | Available: $456.77 | Points: 52,286 | Status: active
+  CARD-162036 | Visa Gold | Card#: [CREDIT_CARD]1545203803064862[/CREDIT_CARD] | Exp: 04/28 | Limit: $10,000 | Balance: $2,283.32 | Available: $7,716.68 | Points: 9,777 | Status: active
+  CARD-284327 | Visa Black | Card#: [CREDIT_CARD]7129411897885[/CREDIT_CARD] | Exp: 10/26 | Limit: $15,000 | Balance: $10,586.94 | Available: $4,413.06 | Points: 48,840 | Status: active
+
+=== Loans & Contracts ===
+  LOAN-451317 | Mortgage | Principal: $5,000.00 | Rate: 5.48% | Term: 24 months | Payment: $220.43/mo | Remaining: $4,445.93 | Status: active
+  LOAN-590755 | Business Loan | Principal: $500,000.00 | Rate: 11.39% | Term: 36 months | Payment: $16,461.86/mo | Remaining: $411,700.39 | Status: active
+
+=== Recent Transactions ===
+  2026-03-16 | ComEd | -$4,928.51 | utilities | completed
+  2026-03-15 | N/A | +$59.65 | refund | completed
+  2026-03-14 | N/A | -$4,951.64 | loan_payment | completed
+  2026-03-13 | N/A | -$814.35 | atm_withdrawal | completed
+  2026-03-10 | Aldi | -$95.29 | grocery | completed
+  2026-03-09 | United Airlines | -$2,285.35 | travel | completed
+  2026-03-08 | eBay | -$2,328.31 | online_shopping | pending
+  2026-03-05 | USAA | -$3,502.67 | insurance | failed
+  2026-03-05 | Delta Airlines | -$4,031.32 | travel | completed
+  2026-03-04 | Camden Property | -$2,303.86 | rent | completed
+  2026-03-04 | N/A | -$2,679.85 | transfer_out | completed
+  2026-03-04 | Pearson | -$161.10 | education | completed
+  2026-03-01 | Cantu-Carter | +$6,062.61 | direct_deposit | completed
+  2026-02-28 | USAA | -$848.41 | insurance | pending
+  2026-02-28 | Target.com | -$163.51 | online_shopping | completed

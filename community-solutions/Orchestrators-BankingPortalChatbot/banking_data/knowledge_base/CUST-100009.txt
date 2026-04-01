@@ -1,0 +1,38 @@
+Customer Profile: CUST-100009
+Name: [PERSON]Q43I U8IG[/PERSON]
+Email: [EMAIL_ADDRESS]FKj3C@example.org[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER]674.882.2148[/PHONE_NUMBER]
+DOB: [DATETIME]1655-09-29[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]310-43-2685[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]JSIrm[/LOCATION] [LOCATION]YCQWN tkISc Cckzh 23u[/LOCATION], [LOCATION]UNVspePrV[/LOCATION], [LOCATION]9B[/LOCATION] [LOCATION]zcSsn[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-265154 | checking | Acct#: 5728897164 | Balance: $80,752.41 | Opened: 2021-09-02 | Status: active
+  ACCT-841535 | certificate_of_deposit | Acct#: 9420979586 | Balance: $79,423.26 | Opened: 2021-08-25 | Status: active
+
+=== Credit Cards ===
+  CARD-954017 | Visa Black | Card#: [CREDIT_CARD]5481491963621972[/CREDIT_CARD] | Exp: 05/28 | Limit: $5,000 | Balance: $2,662.13 | Available: $2,337.87 | Points: 77,205 | Status: active
+  CARD-836109 | Amex Black | Card#: [CREDIT_CARD]1245257400627575[/CREDIT_CARD] | Exp: 03/27 | Limit: $5,000 | Balance: $2,915.32 | Available: $2,084.68 | Points: 148,762 | Status: blocked
+  CARD-948095 | Amex Gold | Card#: [CREDIT_CARD]988482214928358[/CREDIT_CARD] | Exp: 07/28 | Limit: $5,000 | Balance: $2,409.55 | Available: $2,590.45 | Points: 27,291 | Status: active
+
+=== Loans & Contracts ===
+  LOAN-435039 | Personal Loan | Principal: $200,000.00 | Rate: 9.95% | Term: 60 months | Payment: $4,244.49/mo | Remaining: $78,957.72 | Status: active
+  LOAN-826847 | Mortgage | Principal: $200,000.00 | Rate: 6.97% | Term: 120 months | Payment: $2,319.08/mo | Remaining: $55,646.33 | Status: active
+  LOAN-868170 | Auto Loan | Principal: $10,000.00 | Rate: 9.7% | Term: 12 months | Payment: $877.76/mo | Remaining: $4,280.47 | Status: active
+
+=== Recent Transactions ===
+  2026-03-15 | Olive Garden | -$67.15 | restaurant | completed
+  2026-03-14 | N/A | -$1,133.15 | transfer_out | completed
+  2026-03-13 | Hernandez-Jones | +$6,079.28 | direct_deposit | completed
+  2026-03-12 | Airbnb | -$394.15 | travel | completed
+  2026-03-08 | Pearson, Morris and Alvarez | +$6,580.96 | direct_deposit | completed
+  2026-03-07 | National Grid | -$3,092.18 | utilities | completed
+  2026-03-05 | Airbnb | -$2,466.68 | travel | completed
+  2026-02-20 | N/A | -$1,600.45 | transfer_out | completed
+  2026-02-18 | Kroger | -$159.76 | grocery | completed
+  2026-02-12 | UnitedHealth | -$1,848.58 | healthcare | completed
+  2026-02-12 | McGraw-Hill | -$3,944.18 | education | completed
+  2026-02-07 | UnitedHealth | -$4,092.48 | healthcare | completed
+  2026-02-06 | Ticketmaster | -$866.46 | entertainment | completed
+  2026-01-31 | Murray-Johnson | +$3,396.77 | salary | completed
+  2026-01-30 | eBay | -$4,862.55 | online_shopping | pending

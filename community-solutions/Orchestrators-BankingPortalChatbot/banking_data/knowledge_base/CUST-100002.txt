@@ -1,0 +1,37 @@
+Customer Profile: CUST-100002
+Name: [PERSON]P9HZx HqSVwNg8x[/PERSON]
+Email: [EMAIL_ADDRESS]4XWr3D7FRY45rz@example.net[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER]481-296-9820x838[/PHONE_NUMBER]
+DOB: [DATETIME]1635-07-25[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]473-16-3230[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]AiU[/LOCATION] [LOCATION]zqr9r7U W4wSX wiB. PuI[/LOCATION], [LOCATION]bptGg YpygG[/LOCATION], [LOCATION]lL[/LOCATION] [LOCATION]pidNd[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-755420 | checking | Acct#: 3952295757 | Balance: $196,988.83 | Opened: 2024-09-28 | Status: active
+  ACCT-256226 | savings | Acct#: 2825957977 | Balance: $56,318.64 | Opened: 2023-10-07 | Status: active
+
+=== Credit Cards ===
+  CARD-931131 | Mastercard Platinum | Card#: [CREDIT_CARD]786001913930[/CREDIT_CARD] | Exp: 07/30 | Limit: $2,000 | Balance: $95.42 | Available: $1,904.58 | Points: 122,866 | Status: active
+  CARD-385470 | Amex Black | Card#: [CREDIT_CARD]5519492224500202[/CREDIT_CARD] | Exp: 12/27 | Limit: $50,000 | Balance: $16,100.34 | Available: $33,899.66 | Points: 10,449 | Status: active
+
+=== Loans & Contracts ===
+  LOAN-976566 | Auto Loan | Principal: $100,000.00 | Rate: 2.76% | Term: 60 months | Payment: $1,786.22/mo | Remaining: $91,762.44 | Status: delinquent
+  LOAN-900177 | Business Loan | Principal: $5,000.00 | Rate: 12.5% | Term: 120 months | Payment: $73.19/mo | Remaining: $2,949.05 | Status: paid_off
+  LOAN-557058 | Home Equity Line | Principal: $500,000.00 | Rate: 11.66% | Term: 36 months | Payment: $16,526.08/mo | Remaining: $473,701.83 | Status: active
+
+=== Recent Transactions ===
+  2026-03-14 | N/A | -$4,187.79 | atm_withdrawal | completed
+  2026-03-14 | National Grid | -$4,638.54 | utilities | completed
+  2026-03-13 | Duke Energy | -$2,493.13 | utilities | completed
+  2026-03-12 | USAA | -$3,353.25 | insurance | completed
+  2026-03-11 | Kroger | -$160.25 | grocery | completed
+  2026-03-11 | N/A | -$3,879.27 | atm_withdrawal | completed
+  2026-03-11 | N/A | -$1,694.46 | transfer_out | completed
+  2026-03-09 | N/A | +$2,657.00 | transfer_in | completed
+  2026-03-07 | Scott Ltd | +$3,052.24 | salary | completed
+  2026-03-01 | N/A | -$1,635.28 | atm_withdrawal | completed
+  2026-02-26 | Microsoft 365 | -$4,348.83 | subscription | pending
+  2026-02-25 | Olive Garden | -$101.06 | restaurant | completed
+  2026-02-25 | N/A | -$3,733.43 | atm_withdrawal | completed
+  2026-02-23 | May-Ross | +$5,565.16 | direct_deposit | completed
+  2026-02-20 | N/A | -$1,901.60 | loan_payment | completed

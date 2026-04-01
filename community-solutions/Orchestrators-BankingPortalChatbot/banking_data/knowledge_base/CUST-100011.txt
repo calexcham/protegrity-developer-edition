@@ -1,0 +1,32 @@
+Customer Profile: CUST-100011
+Name: [PERSON]M3WTMe GtuI[/PERSON]
+Email: [EMAIL_ADDRESS]LeK9KNNA1SmWfG@example.net[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER]309.624.2058x483[/PHONE_NUMBER]
+DOB: [DATETIME]1367-10-05[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]803-95-3871[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]SAk8n[/LOCATION] [LOCATION]Z4mxf WlG3 Z0K. vpw[/LOCATION], [LOCATION]bc8opplryX[/LOCATION], [LOCATION]BK[/LOCATION] [LOCATION]xIznS[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-308296 | checking | Acct#: 2214216328 | Balance: $26,699.99 | Opened: 2019-08-06 | Status: active
+
+=== Credit Cards ===
+  CARD-311469 | Mastercard Black | Card#: [CREDIT_CARD]9475333383060061[/CREDIT_CARD] | Exp: 05/29 | Limit: $10,000 | Balance: $6,651.99 | Available: $3,348.01 | Points: 10,329 | Status: active
+  CARD-821634 | Mastercard Platinum | Card#: [CREDIT_CARD]9400941080000267[/CREDIT_CARD] | Exp: 05/26 | Limit: $15,000 | Balance: $10,924.28 | Available: $4,075.72 | Points: 3,342 | Status: active
+  CARD-801520 | Mastercard Gold | Card#: [CREDIT_CARD]6655385256349636[/CREDIT_CARD] | Exp: 08/29 | Limit: $2,000 | Balance: $1,336.37 | Available: $663.63 | Points: 134,140 | Status: expired
+
+=== Recent Transactions ===
+  2026-03-16 | N/A | -$2,784.10 | transfer_out | completed
+  2026-03-16 | Ponce, Downs and Contreras | +$5,518.82 | salary | completed
+  2026-03-12 | N/A | -$3,433.84 | atm_withdrawal | completed
+  2026-03-08 | AvalonBay | -$2,645.15 | rent | completed
+  2026-03-08 | Blue Cross | -$745.40 | healthcare | completed
+  2026-03-02 | Harrington, Johnson and Jones | +$7,039.26 | salary | completed
+  2026-02-26 | ComEd | -$3,734.40 | utilities | completed
+  2026-02-26 | Olive Garden | -$39.07 | restaurant | completed
+  2026-02-25 | N/A | +$2,241.87 | refund | completed
+  2026-02-25 | PlayStation Store | -$3,152.01 | entertainment | completed
+  2026-02-24 | Cox-Herring | +$2,200.48 | salary | pending
+  2026-02-24 | N/A | -$4,324.55 | loan_payment | completed
+  2026-02-21 | eBay | -$489.44 | online_shopping | completed
+  2026-02-18 | N/A | +$4,417.28 | transfer_in | completed
+  2026-02-18 | Little, Leon and Hicks | +$4,257.36 | salary | completed

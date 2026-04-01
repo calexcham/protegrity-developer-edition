@@ -1,0 +1,34 @@
+Customer Profile: CUST-100000
+Name: [PERSON]C4idPSY LLxx[/PERSON]
+Email: [EMAIL_ADDRESS]gBlgez41oo3t@example.org[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER]728.751.7930[/PHONE_NUMBER]
+DOB: [DATETIME]1749-05-23[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]996-25-6169[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]yZiXS[/LOCATION] [LOCATION]z1efu Tcy14SDR sar. 60U[/LOCATION], [LOCATION]HysOLalc4sw[/LOCATION], [LOCATION]2r[/LOCATION] [LOCATION]kPZOZ[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-246316 | checking | Acct#: 9697354961 | Balance: $61,336.23 | Opened: 2023-02-19 | Status: active
+  ACCT-198246 | checking | Acct#: 9963334018 | Balance: $8,090.90 | Opened: 2021-04-18 | Status: active
+  ACCT-781453 | savings | Acct#: 3585650756 | Balance: $49,829.59 | Opened: 2025-06-12 | Status: active
+
+=== Credit Cards ===
+  CARD-717889 | Mastercard Classic | Card#: [CREDIT_CARD]1158885255938243[/CREDIT_CARD] | Exp: 06/30 | Limit: $15,000 | Balance: $2,645.29 | Available: $12,354.71 | Points: 41,853 | Status: active
+  CARD-325772 | Mastercard Classic | Card#: [CREDIT_CARD]0994999503891397[/CREDIT_CARD] | Exp: 11/29 | Limit: $10,000 | Balance: $2,222.97 | Available: $7,777.03 | Points: 25,353 | Status: active
+  CARD-946335 | Visa Black | Card#: [CREDIT_CARD]6833044802178216[/CREDIT_CARD] | Exp: 08/30 | Limit: $10,000 | Balance: $4,829.81 | Available: $5,170.19 | Points: 99,230 | Status: active
+
+=== Recent Transactions ===
+  2026-03-16 | United Airlines | -$792.89 | travel | pending
+  2026-03-16 | N/A | +$1,125.42 | transfer_in | completed
+  2026-03-14 | N/A | +$2,763.74 | refund | completed
+  2026-03-13 | Starbucks | -$181.56 | restaurant | completed
+  2026-03-12 | N/A | -$3,310.20 | loan_payment | completed
+  2026-03-10 | Allen-Allen | +$3,728.72 | direct_deposit | completed
+  2026-03-08 | N/A | -$3,509.85 | transfer_out | completed
+  2026-03-07 | Chipotle | -$34.80 | restaurant | completed
+  2026-03-05 | Stanton-Gill | +$5,264.67 | salary | completed
+  2026-03-03 | Udemy | -$1,073.15 | education | completed
+  2026-03-02 | Expedia | -$3,287.72 | travel | pending
+  2026-02-27 | eBay | -$378.53 | online_shopping | completed
+  2026-02-25 | N/A | +$4,390.35 | transfer_in | completed
+  2026-02-24 | N/A | +$4,980.49 | refund | completed
+  2026-02-20 | N/A | -$810.01 | transfer_out | completed

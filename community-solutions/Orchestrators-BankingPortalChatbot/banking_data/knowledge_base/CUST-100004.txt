@@ -1,0 +1,37 @@
+Customer Profile: CUST-100004
+Name: [PERSON]8GpFOLF AlXXCR[/PERSON]
+Email: [EMAIL_ADDRESS]jbHS4yko@example.com[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER]147-637-7002[/PHONE_NUMBER]
+DOB: [DATETIME]2655-03-10[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]266-60-7619[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]Rzo2P[/LOCATION] [LOCATION]jTTOKl flfmyq khYBM ZV4[/LOCATION], [LOCATION]x34rwRPqy8[/LOCATION], [LOCATION]eu[/LOCATION] [LOCATION]7WGen[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-675462 | checking | Acct#: 5376588372 | Balance: $208,765.53 | Opened: 2021-08-13 | Status: active
+
+=== Credit Cards ===
+  CARD-402096 | Visa Platinum | Card#: [CREDIT_CARD]0672554373618992[/CREDIT_CARD] | Exp: 04/26 | Limit: $15,000 | Balance: $1,334.24 | Available: $13,665.76 | Points: 62,505 | Status: active
+  CARD-579318 | Visa Classic | Card#: [CREDIT_CARD]2122407837208[/CREDIT_CARD] | Exp: 04/27 | Limit: $50,000 | Balance: $31,755.96 | Available: $18,244.04 | Points: 131,027 | Status: active
+  CARD-640410 | Amex Gold | Card#: [CREDIT_CARD]0490527959330777[/CREDIT_CARD] | Exp: 09/27 | Limit: $25,000 | Balance: $328.71 | Available: $24,671.29 | Points: 76,355 | Status: active
+
+=== Loans & Contracts ===
+  LOAN-800674 | Mortgage | Principal: $200,000.00 | Rate: 4.91% | Term: 240 months | Payment: $1,309.99/mo | Remaining: $51,843.37 | Status: active
+  LOAN-592972 | Auto Loan | Principal: $10,000.00 | Rate: 12.03% | Term: 12 months | Payment: $888.63/mo | Remaining: $4,318.86 | Status: active
+  LOAN-170841 | Home Equity Line | Principal: $200,000.00 | Rate: 5.04% | Term: 12 months | Payment: $17,125.16/mo | Remaining: $80,705.96 | Status: active
+
+=== Recent Transactions ===
+  2026-03-13 | McGraw-Hill | -$133.85 | education | completed
+  2026-03-12 | Walmart.com | -$2,156.06 | online_shopping | completed
+  2026-03-11 | Spotify | -$4,068.01 | subscription | completed
+  2026-03-11 | Mcknight Inc | +$5,433.40 | direct_deposit | completed
+  2026-03-11 | USAA | -$1,812.35 | insurance | completed
+  2026-03-10 | N/A | -$1,126.27 | atm_withdrawal | completed
+  2026-03-08 | N/A | -$2,249.36 | transfer_out | completed
+  2026-03-08 | N/A | -$3,737.32 | transfer_out | completed
+  2026-03-03 | Pearson | -$2,629.66 | education | pending
+  2026-03-03 | Mcdaniel LLC | +$6,537.32 | salary | completed
+  2026-02-28 | N/A | -$4,665.29 | transfer_out | completed
+  2026-02-25 | N/A | -$1,038.69 | investment | completed
+  2026-02-24 | Adobe | -$3,671.66 | subscription | completed
+  2026-02-23 | Costco Gas | -$92.82 | gas_station | completed
+  2026-02-22 | Spotify | -$3,248.68 | subscription | completed

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Cloud Portal — Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="nav-logo">🏦</span>
+            <span class="nav-title">Banking Cloud Portal</span>
+        </div>
+        <div class="nav-user">
+            <span class="user-greeting">Welcome, <strong>{{ customer_name }}</strong></span>
+            <a href="{{ url_for('logout') }}" class="btn btn-sm btn-outline">Sign Out</a>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+        <!-- Dashboard Content -->
+        <div class="dashboard-panel" id="dashboardPanel">
+            <!-- Summary Cards -->
+            <div class="summary-cards" id="summaryCards">
+                <div class="card summary-card">
+                    <div class="card-icon">💰</div>
+                    <div class="card-info">
+                        <div class="card-label">Total Balance</div>
+                        <div class="card-value" id="totalBalance">Loading...</div>
+                    </div>
+                </div>
+                <div class="card summary-card">
+                    <div class="card-icon">🏧</div>
+                    <div class="card-info">
+                        <div class="card-label">Accounts</div>
+                        <div class="card-value" id="numAccounts">—</div>
+                    </div>
+                </div>
+                <div class="card summary-card">
+                    <div class="card-icon">💳</div>
+                    <div class="card-info">
+                        <div class="card-label">Credit Cards</div>
+                        <div class="card-value" id="numCards">—</div>
+                    </div>
+                </div>
+                <div class="card summary-card">
+                    <div class="card-icon">📋</div>
+                    <div class="card-info">
+                        <div class="card-label">Active Loans</div>
+                        <div class="card-value" id="numLoans">—</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accounts Section -->
+            <div class="section">
+                <h2 class="section-title">Bank Accounts</h2>
+                <div class="table-container">
+                    <table class="data-table" id="accountsTable">
+                        <thead>
+                            <tr>
+                                <th>Account</th>
+                                <th>Type</th>
+                                <th>Account Number</th>
+                                <th>Balance</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Credit Cards Section -->
+            <div class="section">
+                <h2 class="section-title">Credit Cards</h2>
+                <div class="table-container">
+                    <table class="data-table" id="cardsTable">
+                        <thead>
+                            <tr>
+                                <th>Card</th>
+                                <th>Type / Tier</th>
+                                <th>Card Number</th>
+                                <th>Balance / Limit</th>
+                                <th>Available</th>
+                                <th>Points</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Loans Section -->
+            <div class="section">
+                <h2 class="section-title">Loans &amp; Contracts</h2>
+                <div class="table-container">
+                    <table class="data-table" id="loansTable">
+                        <thead>
+                            <tr>
+                                <th>Contract</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Rate</th>
+                                <th>Monthly Payment</th>
+                                <th>Remaining</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Transactions Section -->
+            <div class="section">
+                <h2 class="section-title">Recent Transactions</h2>
+                <div class="table-container">
+                    <table class="data-table" id="transactionsTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Panel (slide-out) -->
+        <div class="chat-panel" id="chatPanel">
+            <div class="chat-header">
+                <h3>🤖 Banking Assistant</h3>
+                <div class="chat-header-actions">
+                    <button class="btn btn-sm btn-outline" id="clearChatBtn" title="Clear history">🗑️</button>
+                    <button class="btn btn-sm btn-outline" id="closeChatBtn" title="Close">✕</button>
+                </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-welcome">
+                    <p>👋 Hello! I'm your AI banking assistant, powered by <strong>LangGraph</strong> and protected by <strong>Protegrity</strong>.</p>
+                    <p>Ask me anything about your accounts, cards, transactions, or loans.</p>
+                    <div class="quick-prompts" id="quickPrompts"></div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Ask a question about your banking..." autocomplete="off">
+                <button class="btn btn-primary" id="sendBtn">Send</button>
+            </div>
+        </div>
+
+        <!-- Chat Toggle Button -->
+        <button class="chat-toggle" id="chatToggle" title="Open AI Assistant">
+            💬
+        </button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

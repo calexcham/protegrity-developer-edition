@@ -1,0 +1,37 @@
+Customer Profile: CUST-100007
+Name: [PERSON]aubHo ZOQ7aY[/PERSON]
+Email: [EMAIL_ADDRESS]yRoYekp3k@example.org[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER](945)395-0960x14318[/PHONE_NUMBER]
+DOB: [DATETIME]3139-10-17[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]095-41-8018[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]pX81[/LOCATION] [LOCATION]2dIZOdAT0 y0W[/LOCATION], [LOCATION]KjHBk cIYR7wDUwly[/LOCATION], [LOCATION]33[/LOCATION] [LOCATION]ZFNRp[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-921875 | savings | Acct#: 8506931282 | Balance: $161,595.52 | Opened: 2018-02-25 | Status: active
+  ACCT-769077 | savings | Acct#: 7420493866 | Balance: $60,384.28 | Opened: 2024-02-01 | Status: active
+  ACCT-238394 | checking | Acct#: 5199176431 | Balance: $233,491.01 | Opened: 2021-06-20 | Status: active
+
+=== Credit Cards ===
+  CARD-816116 | Visa Black | Card#: [CREDIT_CARD]8961935649234463[/CREDIT_CARD] | Exp: 11/26 | Limit: $15,000 | Balance: $4,384.95 | Available: $10,615.05 | Points: 19,134 | Status: pending_activation
+  CARD-374921 | Visa Classic | Card#: [CREDIT_CARD]601352772945692[/CREDIT_CARD] | Exp: 06/28 | Limit: $25,000 | Balance: $1,350.65 | Available: $23,649.35 | Points: 104,326 | Status: expired
+
+=== Loans & Contracts ===
+  LOAN-662628 | Business Loan | Principal: $350,000.00 | Rate: 6.74% | Term: 240 months | Payment: $2,659.19/mo | Remaining: $59,522.27 | Status: active
+  LOAN-313068 | Personal Loan | Principal: $100,000.00 | Rate: 3.34% | Term: 24 months | Payment: $4,313.18/mo | Remaining: $53,460.90 | Status: in_grace_period
+
+=== Recent Transactions ===
+  2026-03-16 | N/A | +$3,371.42 | refund | completed
+  2026-03-08 | N/A | -$2,587.32 | investment | completed
+  2026-03-07 | N/A | -$2,285.09 | loan_payment | completed
+  2026-03-05 | N/A | -$4,132.37 | atm_withdrawal | completed
+  2026-03-02 | Trader Joe's | -$173.27 | grocery | completed
+  2026-02-25 | Farrell Ltd | +$4,511.75 | salary | completed
+  2026-02-19 | Equity Residential | -$2,711.33 | rent | pending
+  2026-02-18 | Shell | -$28.28 | gas_station | completed
+  2026-02-18 | Costco Gas | -$50.14 | gas_station | completed
+  2026-02-13 | Duke Energy | -$3,749.51 | utilities | completed
+  2026-02-12 | N/A | +$3,138.60 | refund | completed
+  2026-02-10 | Kroger | -$78.37 | grocery | completed
+  2026-02-09 | Expedia | -$582.14 | travel | completed
+  2026-02-08 | Duke Energy | -$1,185.77 | utilities | completed
+  2026-02-07 | N/A | +$2,100.53 | transfer_in | completed

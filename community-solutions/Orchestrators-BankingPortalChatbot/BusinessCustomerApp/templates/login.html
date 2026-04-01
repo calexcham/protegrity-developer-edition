@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Cloud Portal — Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="bank-logo">🏦</div>
+                <h1>Banking Cloud Portal</h1>
+                <p class="subtitle">Secure Customer Access</p>
+            </div>
+            {% if error %}
+            <div class="alert alert-error">{{ error }}</div>
+            {% endif %}
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="e.g. allison100" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+            <div class="login-footer">
+                <p>Protected by <strong>Protegrity</strong> Dual-Gate Architecture</p>
+            </div>
+        </div>
+
+        <div class="demo-credentials">
+            <div class="demo-credentials-header" onclick="toggleCredentials()">
+                <span>🔑 Demo Credentials</span>
+                <span class="demo-toggle-icon" id="demo-toggle-icon">▼</span>
+            </div>
+            <div class="demo-credentials-body" id="demo-credentials-body">
+                <p class="demo-hint">Click a row to auto-fill the login form</p>
+                <table class="demo-table">
+                    <thead>
+                        <tr><th>Username</th><th>Password</th><th>Name</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="fillLogin('allison100','pass100')"><td>allison100</td><td>pass100</td><td>Allison Hill</td></tr>
+                        <tr onclick="fillLogin('theresa101','pass101')"><td>theresa101</td><td>pass101</td><td>Theresa Martin</td></tr>
+                        <tr onclick="fillLogin('brian102','pass102')"><td>brian102</td><td>pass102</td><td>Brian Rodriguez</td></tr>
+                        <tr onclick="fillLogin('courtney103','pass103')"><td>courtney103</td><td>pass103</td><td>Courtney Gonzalez</td></tr>
+                        <tr onclick="fillLogin('michael104','pass104')"><td>michael104</td><td>pass104</td><td>Michael Turner</td></tr>
+                        <tr onclick="fillLogin('eric105','pass105')"><td>eric105</td><td>pass105</td><td>Eric Curry</td></tr>
+                        <tr onclick="fillLogin('mark106','pass106')"><td>mark106</td><td>pass106</td><td>Mark Mccall</td></tr>
+                        <tr onclick="fillLogin('david107','pass107')"><td>david107</td><td>pass107</td><td>David Medina</td></tr>
+                        <tr onclick="fillLogin('sharon108','pass108')"><td>sharon108</td><td>pass108</td><td>Sharon Jordan</td></tr>
+                        <tr onclick="fillLogin('jose109','pass109')"><td>jose109</td><td>pass109</td><td>Jose Reed</td></tr>
+                        <tr onclick="fillLogin('jeffrey110','pass110')"><td>jeffrey110</td><td>pass110</td><td>Jeffrey Gonzales</td></tr>
+                        <tr onclick="fillLogin('monica111','pass111')"><td>monica111</td><td>pass111</td><td>Monica Rose</td></tr>
+                        <tr onclick="fillLogin('lisa112','pass112')"><td>lisa112</td><td>pass112</td><td>Lisa Miller</td></tr>
+                        <tr onclick="fillLogin('jennifer113','pass113')"><td>jennifer113</td><td>pass113</td><td>Jennifer Williams</td></tr>
+                        <tr onclick="fillLogin('tanya114','pass114')"><td>tanya114</td><td>pass114</td><td>Tanya Russell</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<style>
+.demo-credentials {
+    margin-top: 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 420px;
+    width: 100%;
+}
+.demo-credentials-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #e2e8f0;
+    background: rgba(255,255,255,0.05);
+    user-select: none;
+}
+.demo-credentials-header:hover { background: rgba(255,255,255,0.1); }
+.demo-toggle-icon { font-size: 0.75rem; transition: transform 0.2s; }
+.demo-credentials-body { padding: 12px 16px; display: none; }
+.demo-credentials-body.open { display: block; }
+.demo-hint { font-size: 0.78rem; color: #94a3b8; margin: 0 0 10px 0; }
+.demo-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.demo-table th {
+    text-align: left;
+    padding: 5px 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    color: #94a3b8;
+    font-weight: 600;
+}
+.demo-table td { padding: 6px 8px; color: #e2e8f0; }
+.demo-table tbody tr {
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.15s;
+}
+.demo-table tbody tr:hover { background: rgba(99,179,237,0.15); }
+</style>
+
+<script>
+function toggleCredentials() {
+    const body = document.getElementById('demo-credentials-body');
+    const icon = document.getElementById('demo-toggle-icon');
+    body.classList.toggle('open');
+    icon.textContent = body.classList.contains('open') ? '▲' : '▼';
+}
+function fillLogin(username, password) {
+    document.getElementById('username').value = username;
+    document.getElementById('password').value = password;
+    document.getElementById('username').focus();
+}
+</script>
+</body>
+</html>

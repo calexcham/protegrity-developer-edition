@@ -1,0 +1,32 @@
+Customer Profile: CUST-100012
+Name: [PERSON]e7da PBUARE[/PERSON]
+Email: [EMAIL_ADDRESS]m4547JXm@example.org[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER](034)889-7093[/PHONE_NUMBER]
+DOB: [DATETIME]2171-03-20[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]115-28-5918[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]yeY[/LOCATION] [LOCATION]N81PG GYS5S7j BaoQW vii[/LOCATION], [LOCATION]aO3l0767Ug[/LOCATION], [LOCATION]NB[/LOCATION] [LOCATION]nOzo2[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-143802 | money_market | Acct#: 9637824374 | Balance: $35,472.26 | Opened: 2025-04-15 | Status: active
+  ACCT-861200 | checking | Acct#: 5660584367 | Balance: $187,111.90 | Opened: 2018-10-23 | Status: active
+  ACCT-249375 | money_market | Acct#: 6204370540 | Balance: $212,886.99 | Opened: 2022-02-20 | Status: active
+
+=== Credit Cards ===
+  CARD-365018 | Visa Classic | Card#: [CREDIT_CARD]8793725379316381[/CREDIT_CARD] | Exp: 06/26 | Limit: $5,000 | Balance: $2,467.54 | Available: $2,532.46 | Points: 148,712 | Status: active
+
+=== Recent Transactions ===
+  2026-03-16 | N/A | -$2,387.01 | transfer_out | completed
+  2026-03-15 | Spotify | -$382.45 | subscription | completed
+  2026-03-14 | N/A | +$387.75 | transfer_in | completed
+  2026-03-12 | Costco Gas | -$178.96 | gas_station | completed
+  2026-03-05 | State Farm | -$1,198.18 | insurance | failed
+  2026-03-05 | N/A | -$2,004.30 | investment | completed
+  2026-03-05 | Whole Foods | -$27.98 | grocery | completed
+  2026-03-04 | Li PLC | +$7,205.39 | direct_deposit | completed
+  2026-03-03 | Coursera | -$4,436.14 | education | completed
+  2026-03-02 | AvalonBay | -$1,985.22 | rent | completed
+  2026-02-26 | N/A | -$1,304.93 | loan_payment | completed
+  2026-02-23 | Adobe | -$2,430.59 | subscription | completed
+  2026-02-23 | Expedia | -$4,777.34 | travel | completed
+  2026-02-23 | Costco Gas | -$112.17 | gas_station | completed
+  2026-02-20 | N/A | +$2,583.07 | transfer_in | completed

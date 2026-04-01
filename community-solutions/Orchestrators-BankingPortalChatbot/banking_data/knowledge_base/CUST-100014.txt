@@ -1,0 +1,37 @@
+Customer Profile: CUST-100014
+Name: [PERSON]4398z Rplt2xp[/PERSON]
+Email: [EMAIL_ADDRESS]VFs7RWE3@example.net[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER]936-818-164-4078[/PHONE_NUMBER]
+DOB: [DATETIME]1777-11-02[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]504-91-7865[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]vDzeX[/LOCATION] [LOCATION]UIVapSsn WsF FfjA3 K86[/LOCATION], [LOCATION]sBSEK1qu2k[/LOCATION], [LOCATION]Pe[/LOCATION] [LOCATION]yE7u0[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-598357 | checking | Acct#: 5161114352 | Balance: $195,901.29 | Opened: 2023-02-23 | Status: active
+
+=== Credit Cards ===
+  CARD-193826 | Visa Gold | Card#: [CREDIT_CARD]7528860595561694[/CREDIT_CARD] | Exp: 07/29 | Limit: $5,000 | Balance: $1,485.59 | Available: $3,514.41 | Points: 88,715 | Status: active
+  CARD-261395 | Amex Classic | Card#: [CREDIT_CARD]5404278446253356[/CREDIT_CARD] | Exp: 07/27 | Limit: $2,000 | Balance: $568.83 | Available: $1,431.17 | Points: 60,994 | Status: active
+  CARD-893454 | Mastercard Black | Card#: [CREDIT_CARD]973592942848424[/CREDIT_CARD] | Exp: 04/27 | Limit: $25,000 | Balance: $15,771.24 | Available: $9,228.76 | Points: 5,597 | Status: active
+
+=== Loans & Contracts ===
+  LOAN-558752 | Auto Loan | Principal: $25,000.00 | Rate: 5.01% | Term: 12 months | Payment: $2,140.30/mo | Remaining: $12,812.67 | Status: active
+  LOAN-439403 | Business Loan | Principal: $500,000.00 | Rate: 4.4% | Term: 36 months | Payment: $14,851.13/mo | Remaining: $281,038.73 | Status: paid_off
+  LOAN-959222 | Auto Loan | Principal: $25,000.00 | Rate: 3.19% | Term: 36 months | Payment: $729.13/mo | Remaining: $12,049.41 | Status: active
+
+=== Recent Transactions ===
+  2026-03-15 | Nintendo | -$6.10 | entertainment | completed
+  2026-03-15 | N/A | +$2,524.88 | refund | completed
+  2026-03-13 | Kroger | -$38.00 | grocery | completed
+  2026-03-08 | N/A | -$1,061.35 | loan_payment | completed
+  2026-03-06 | N/A | +$768.10 | transfer_in | completed
+  2026-03-06 | Costco Gas | -$15.63 | gas_station | completed
+  2026-03-04 | Target.com | -$161.51 | online_shopping | completed
+  2026-02-27 | Airbnb | -$3,821.51 | travel | completed
+  2026-02-22 | ConEdison | -$895.25 | utilities | completed
+  2026-02-20 | Delta Airlines | -$1,827.93 | travel | completed
+  2026-02-17 | McDonald's | -$149.98 | restaurant | completed
+  2026-02-17 | Microsoft 365 | -$1,741.28 | subscription | completed
+  2026-02-14 | AMC Theatres | -$4,799.22 | entertainment | completed
+  2026-02-14 | N/A | -$4,095.70 | loan_payment | completed
+  2026-02-12 | Apple iCloud | -$3,424.48 | subscription | completed

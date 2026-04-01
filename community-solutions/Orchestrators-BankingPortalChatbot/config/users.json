@@ -1,0 +1,32 @@
+{
+  "admin": {
+    "password_hash": "a25d2f09801a35459961ae972b218e4ae072688cfbea8e747c252ed16c689d8d",
+    "role": "Technical Administrator",
+    "protegrity_user": "superuser",
+    "orchestrator": null
+  },
+  "engineer": {
+    "password_hash": "8a0ebe51289f30609bfa8bf7a5b70cc2cf240dcd701993e2041fcfbf797aef71",
+    "role": "Integration Engineer",
+    "protegrity_user": "superuser",
+    "orchestrator": null
+  },
+  "langgraph": {
+    "password_hash": "a5cdf1258389e17cb3db08741021539a349bf43c9ca093f726bc842b9eb1d8ca",
+    "role": "LangGraph Engineer",
+    "protegrity_user": "superuser",
+    "orchestrator": "langgraph"
+  },
+  "crewai": {
+    "password_hash": "1c21ebd6b3df9628eb64c515f3ed5611b3513fa4b7174924d1b8d703bfd62050",
+    "role": "CrewAI Engineer",
+    "protegrity_user": "superuser",
+    "orchestrator": "crewai"
+  },
+  "llamaindex": {
+    "password_hash": "fbb8937afaaeb406dc1c4376c2620b5ddfc8ff50d94f83577878b94325e51544",
+    "role": "LlamaIndex Engineer",
+    "protegrity_user": "superuser",
+    "orchestrator": "llamaindex"
+  }
+}

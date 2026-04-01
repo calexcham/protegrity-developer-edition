@@ -1,0 +1,32 @@
+Customer Profile: CUST-100003
+Name: [PERSON]I2esOHIS OP5dZgv6[/PERSON]
+Email: [EMAIL_ADDRESS]4irDqb@example.net[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER]097.185.3478[/PHONE_NUMBER]
+DOB: [DATETIME]1856-06-21[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]048-26-9247[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]yuxXy[/LOCATION] [LOCATION]iEEHUOBEi BaSOZp fUnnY FjI[/LOCATION], [LOCATION]aKxx3uug8[/LOCATION], [LOCATION]LM[/LOCATION] [LOCATION]AOd1O[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-926952 | savings | Acct#: 4735313433 | Balance: $193,625.99 | Opened: 2023-04-08 | Status: active
+  ACCT-937302 | checking | Acct#: 5226368665 | Balance: $135,122.83 | Opened: 2020-09-17 | Status: active
+  ACCT-928358 | savings | Acct#: 4721365350 | Balance: $3,862.85 | Opened: 2018-08-31 | Status: active
+
+=== Credit Cards ===
+  CARD-378258 | Visa Gold | Card#: [CREDIT_CARD]9415600958030[/CREDIT_CARD] | Exp: 09/30 | Limit: $10,000 | Balance: $126.25 | Available: $9,873.75 | Points: 137,910 | Status: active
+
+=== Recent Transactions ===
+  2026-03-13 | Ticketmaster | -$1,171.93 | entertainment | pending
+  2026-03-12 | Safeway | -$108.44 | grocery | completed
+  2026-03-12 | Starbucks | -$163.14 | restaurant | completed
+  2026-03-11 | N/A | +$4,083.97 | transfer_in | completed
+  2026-03-09 | ConEdison | -$4,365.33 | utilities | completed
+  2026-03-08 | N/A | -$421.67 | atm_withdrawal | completed
+  2026-03-07 | Walmart.com | -$1,564.46 | online_shopping | completed
+  2026-03-05 | ExxonMobil | -$103.88 | gas_station | completed
+  2026-03-04 | PG&E | -$1,183.25 | utilities | completed
+  2026-03-03 | N/A | -$2,809.51 | loan_payment | completed
+  2026-03-03 | Geico | -$33.01 | insurance | completed
+  2026-03-01 | N/A | -$4,838.56 | atm_withdrawal | completed
+  2026-03-01 | Progressive | -$1,865.83 | insurance | completed
+  2026-03-01 | Udemy | -$3,481.12 | education | completed
+  2026-02-24 | Williams, Johnson and Wright | +$3,666.85 | direct_deposit | pending

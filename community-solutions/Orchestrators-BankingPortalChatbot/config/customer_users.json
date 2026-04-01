@@ -1,0 +1,92 @@
+{
+  "allison100": {
+    "password_hash": "29bf72f8d89f83e2fca11f01a530b0c39058b8fd0b0563aca173d2c624c71ffb",
+    "customer_id": "CUST-100000",
+    "name": "Allison Hill",
+    "role": "Customer"
+  },
+  "theresa101": {
+    "password_hash": "2bd2a833384945be5a4d05109f418acbc78cc41d7640842f0e881ba892651296",
+    "customer_id": "CUST-100001",
+    "name": "Theresa Martin",
+    "role": "Customer"
+  },
+  "brian102": {
+    "password_hash": "68b5aa742a3c02d41ca5c6582f9eb685ae72218e0c93680f91d51086d45e67df",
+    "customer_id": "CUST-100002",
+    "name": "Brian Rodriguez",
+    "role": "Customer"
+  },
+  "courtney103": {
+    "password_hash": "9e436b2455b7d1b818d56b04b8985d84ac27e7fb45630e579f7b0695430fbab5",
+    "customer_id": "CUST-100003",
+    "name": "Courtney Gonzalez",
+    "role": "Customer"
+  },
+  "michael104": {
+    "password_hash": "34158b36b0dccb351ad920cf5ebb74820d7825119c647b16db4f535bfef25c65",
+    "customer_id": "CUST-100004",
+    "name": "Michael Turner",
+    "role": "Customer"
+  },
+  "eric105": {
+    "password_hash": "acb3085ac0fa0ce03af7e46da8e5ac3bbb2c03d6a28cfa95c778daa5d525412b",
+    "customer_id": "CUST-100005",
+    "name": "Eric Curry",
+    "role": "Customer"
+  },
+  "mark106": {
+    "password_hash": "d0f775036f29ba7540be994605826ab25b7f153a1d8157e5e09218b8fa59aa91",
+    "customer_id": "CUST-100006",
+    "name": "Mark Mccall",
+    "role": "Customer"
+  },
+  "david107": {
+    "password_hash": "225adbca5f1445b65f065079fd6b3fdda829b6e660554b6200e86fe4a129672e",
+    "customer_id": "CUST-100007",
+    "name": "David Medina",
+    "role": "Customer"
+  },
+  "sharon108": {
+    "password_hash": "02548935a13223836dc0fdfa7574d4adc6bd5b60a99296cc54cefe1e7103fbcd",
+    "customer_id": "CUST-100008",
+    "name": "Sharon Jordan",
+    "role": "Customer"
+  },
+  "jose109": {
+    "password_hash": "cf78821e30a469451bbb37eb5bd9976ea68d77ea3dd54ac3dfd83de5cf91eba5",
+    "customer_id": "CUST-100009",
+    "name": "Jose Reed",
+    "role": "Customer"
+  },
+  "jeffrey110": {
+    "password_hash": "8f3b97e5c348a48d4cde1cf58b7746221cc4f23b1471cb7b530a4e4b7ac5b887",
+    "customer_id": "CUST-100010",
+    "name": "Jeffrey Gonzales",
+    "role": "Customer"
+  },
+  "monica111": {
+    "password_hash": "b2c56341cc2b9f8bf898bd7528dd39e641b51c4fbd51f241b46ad70872dd1b99",
+    "customer_id": "CUST-100011",
+    "name": "Monica Rose",
+    "role": "Customer"
+  },
+  "lisa112": {
+    "password_hash": "a1f5626f394c753975a9060627b1894e2c82436d7d9fb6103f58455641771682",
+    "customer_id": "CUST-100012",
+    "name": "Lisa Miller",
+    "role": "Customer"
+  },
+  "jennifer113": {
+    "password_hash": "d2d8fdd3e123c147ca908c7fec41c7fe5746e7cc1b90e3507859ab0a7a0212d1",
+    "customer_id": "CUST-100013",
+    "name": "Jennifer Williams",
+    "role": "Customer"
+  },
+  "tanya114": {
+    "password_hash": "6a4ca776c3ef0c0d69107200ff1ff66217511aab72e032962fb5d6c01aabb158",
+    "customer_id": "CUST-100014",
+    "name": "Tanya Russell",
+    "role": "Customer"
+  }
+}

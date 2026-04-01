@@ -1,0 +1,36 @@
+Customer Profile: CUST-100013
+Name: [PERSON]6oOEJI9K 0RNNW1Ku[/PERSON]
+Email: [EMAIL_ADDRESS]cfQ8mjnZIi@example.org[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER]453-180-9597x62898[/PHONE_NUMBER]
+DOB: [DATETIME]1275-06-24[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]486-29-6866[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]cqOL[/LOCATION] [LOCATION]ftJ4ND SkrsJ6[/LOCATION], [LOCATION]MJL E2eKgihwIGR[/LOCATION], [LOCATION]gH[/LOCATION] [LOCATION]OePcC[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-393880 | money_market | Acct#: 3107992942 | Balance: $229,014.31 | Opened: 2023-01-21 | Status: active
+  ACCT-543732 | certificate_of_deposit | Acct#: 3476758136 | Balance: $131,505.00 | Opened: 2021-09-29 | Status: active
+
+=== Credit Cards ===
+  CARD-512842 | Amex Gold | Card#: [CREDIT_CARD]4949760874361255[/CREDIT_CARD] | Exp: 09/28 | Limit: $2,000 | Balance: $803.96 | Available: $1,196.04 | Points: 31,553 | Status: active
+  CARD-108827 | Visa Gold | Card#: [CREDIT_CARD]3735927429092751[/CREDIT_CARD] | Exp: 12/27 | Limit: $15,000 | Balance: $3,787.82 | Available: $11,212.18 | Points: 26,410 | Status: active
+
+=== Loans & Contracts ===
+  LOAN-594241 | Auto Loan | Principal: $100,000.00 | Rate: 4.37% | Term: 120 months | Payment: $1,030.13/mo | Remaining: $30,156.83 | Status: in_grace_period
+  LOAN-834750 | Auto Loan | Principal: $200,000.00 | Rate: 4.34% | Term: 240 months | Payment: $1,248.09/mo | Remaining: $55,790.52 | Status: paid_off
+
+=== Recent Transactions ===
+  2026-03-14 | N/A | -$1,550.03 | loan_payment | completed
+  2026-03-13 | N/A | -$1,777.16 | atm_withdrawal | completed
+  2026-03-12 | N/A | -$4,077.36 | investment | completed
+  2026-03-10 | Whole Foods | -$107.18 | grocery | completed
+  2026-03-07 | N/A | +$1,925.53 | transfer_in | completed
+  2026-02-28 | N/A | -$4,044.52 | loan_payment | completed
+  2026-02-28 | Chevron | -$76.33 | gas_station | completed
+  2026-02-26 | N/A | -$44.06 | loan_payment | completed
+  2026-02-25 | Chevron | -$177.67 | gas_station | completed
+  2026-02-21 | Walgreens | -$4,142.56 | healthcare | completed
+  2026-02-21 | Airbnb | -$1,559.60 | travel | completed
+  2026-02-19 | Walgreens | -$1,399.95 | healthcare | completed
+  2026-02-17 | UnitedHealth | -$1,358.06 | healthcare | pending
+  2026-02-16 | ConEdison | -$2,366.25 | utilities | completed
+  2026-02-15 | N/A | -$4,674.45 | loan_payment | pending

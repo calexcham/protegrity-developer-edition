@@ -1,0 +1,37 @@
+Customer Profile: CUST-100010
+Name: [PERSON]FdDdnap Z1sJN0Za[/PERSON]
+Email: [EMAIL_ADDRESS]Y3ebSw@example.org[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER]+2-097-473-6144x2188[/PHONE_NUMBER]
+DOB: [DATETIME]1159-07-05[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]956-74-5703[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]to8[/LOCATION] [LOCATION]iVJ2 SpB2 2WugC BV4[/LOCATION], [LOCATION]7TYLGJfv30[/LOCATION], [LOCATION]WJ[/LOCATION] [LOCATION]tYuWT[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-607993 | savings | Acct#: 2897158366 | Balance: $101,881.51 | Opened: 2017-11-30 | Status: active
+
+=== Credit Cards ===
+  CARD-266694 | Visa Platinum | Card#: [CREDIT_CARD]0236745209189[/CREDIT_CARD] | Exp: 05/26 | Limit: $2,000 | Balance: $824.43 | Available: $1,175.57 | Points: 105,744 | Status: active
+  CARD-130354 | Visa Gold | Card#: [CREDIT_CARD]671035786771489[/CREDIT_CARD] | Exp: 01/31 | Limit: $25,000 | Balance: $17,586.65 | Available: $7,413.35 | Points: 52,619 | Status: blocked
+  CARD-153015 | Mastercard Gold | Card#: [CREDIT_CARD]8305555690774881[/CREDIT_CARD] | Exp: 09/28 | Limit: $5,000 | Balance: $132.28 | Available: $4,867.72 | Points: 121,692 | Status: active
+
+=== Loans & Contracts ===
+  LOAN-286209 | Mortgage | Principal: $5,000.00 | Rate: 4.92% | Term: 360 months | Payment: $26.60/mo | Remaining: $3,024.69 | Status: in_grace_period
+  LOAN-822312 | Home Equity Line | Principal: $200,000.00 | Rate: 5.94% | Term: 120 months | Payment: $2,214.39/mo | Remaining: $147,323.39 | Status: active
+  LOAN-778827 | Mortgage | Principal: $350,000.00 | Rate: 3.0% | Term: 60 months | Payment: $6,289.04/mo | Remaining: $289,990.58 | Status: active
+
+=== Recent Transactions ===
+  2026-03-15 | Equity Residential | -$1,227.77 | rent | completed
+  2026-03-11 | N/A | -$3,626.62 | transfer_out | completed
+  2026-03-08 | Spotify | -$2,169.74 | subscription | completed
+  2026-03-07 | Chipotle | -$198.98 | restaurant | completed
+  2026-03-04 | ComEd | -$3,237.74 | utilities | completed
+  2026-03-03 | Walmart.com | -$2,409.99 | online_shopping | completed
+  2026-03-01 | Walmart.com | -$3,313.26 | online_shopping | completed
+  2026-02-23 | N/A | +$4,498.69 | transfer_in | completed
+  2026-02-08 | N/A | -$3,258.81 | transfer_out | completed
+  2026-01-30 | Ticketmaster | -$718.26 | entertainment | completed
+  2026-01-28 | Geico | -$2,296.34 | insurance | completed
+  2026-01-27 | Blake Group | +$7,394.81 | salary | completed
+  2026-01-25 | Apple iCloud | -$1,859.98 | subscription | completed
+  2026-01-25 | ConEdison | -$1,057.92 | utilities | completed
+  2026-01-24 | N/A | -$907.73 | loan_payment | completed

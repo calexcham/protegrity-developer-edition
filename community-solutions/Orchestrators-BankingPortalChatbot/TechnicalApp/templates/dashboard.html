@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Integration App with Orchestrators & LLMs – Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; }
+        .topbar { background: #1e293b; padding: 1rem 2rem; display: flex;
+                  justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; }
+        .topbar h1 { font-size: 1.2rem; color: #38bdf8; }
+        .topbar .user-info { color: #94a3b8; font-size: 0.85rem; }
+        .topbar .user-info .role-badge { background: #7c3aed; color: white; padding: 2px 8px;
+                 border-radius: 10px; font-size: 0.7rem; margin-left: 0.5rem; }
+        .topbar a { color: #f87171; text-decoration: none; margin-left: 1rem; }
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+        .card { background: #1e293b; border-radius: 10px; padding: 1.5rem;
+                border: 1px solid #334155; }
+        .card h2 { font-size: 1rem; color: #38bdf8; margin-bottom: 1rem;
+                   border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
+        label { display: block; color: #94a3b8; font-size: 0.8rem; margin-bottom: 0.25rem; margin-top: 0.75rem; }
+        select, input[type="number"], input[type="text"] {
+            width: 100%; padding: 0.5rem; background: #0f172a; border: 1px solid #334155;
+            border-radius: 6px; color: #e2e8f0; font-size: 0.9rem; }
+        select:focus, input:focus { outline: none; border-color: #38bdf8; }
+        select:disabled { opacity: 0.5; cursor: not-allowed; }
+        .toggle-row { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.75rem; }
+        .toggle { position: relative; width: 44px; height: 24px; }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .toggle .slider { position: absolute; cursor: pointer; inset: 0; background: #475569;
+                          border-radius: 24px; transition: 0.3s; }
+        .toggle .slider:before { content: ""; position: absolute; height: 18px; width: 18px;
+                                  left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.3s; }
+        .toggle input:checked + .slider { background: #22c55e; }
+        .toggle input:checked + .slider:before { transform: translateX(20px); }
+        .btn { padding: 0.6rem 1.5rem; border: none; border-radius: 6px; cursor: pointer;
+               font-size: 0.9rem; margin-top: 1rem; }
+        .btn-primary { background: #7c3aed; color: white; }
+        .btn-primary:hover { background: #6d28d9; }
+        .status-bar { margin-top: 1rem; padding: 0.5rem; border-radius: 6px;
+                      background: #334155; font-size: 0.8rem; color: #94a3b8; display: none; }
+        .status-bar.show { display: block; }
+        .status-bar.success { background: #14532d; color: #86efac; }
+        .customer-list { margin-top: 1rem; }
+        .customer-btn { display: inline-block; padding: 0.4rem 0.8rem; margin: 0.25rem;
+                        background: #334155; border: 1px solid #475569; border-radius: 6px;
+                        color: #e2e8f0; text-decoration: none; font-size: 0.8rem; font-family: monospace; }
+        .customer-btn:hover { background: #475569; border-color: #38bdf8; }
+        .section-title { color: #94a3b8; font-size: 0.85rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        .info-panel { background: #0f172a; border: 1px solid #334155; border-radius: 8px;
+                      padding: 1.2rem; margin-bottom: 1rem; }
+        .info-panel h3 { color: #a78bfa; font-size: 0.95rem; margin-bottom: 0.75rem; }
+        .info-panel ul { list-style: none; padding: 0; }
+        .info-panel ul li { position: relative; padding: 0.4rem 0 0.4rem 1.2rem; color: #94a3b8;
+                            font-size: 0.8rem; line-height: 1.4; border-bottom: 1px solid #1e293b; }
+        .info-panel ul li:last-child { border-bottom: none; }
+        .info-panel ul li::before { content: "✦"; position: absolute; left: 0; color: #7c3aed; font-size: 0.7rem; }
+        .locked-badge { display: inline-block; background: #dc2626; color: white; padding: 1px 6px;
+                        border-radius: 4px; font-size: 0.65rem; margin-left: 0.5rem; vertical-align: middle; }
+        .hint { text-align: center; color: #64748b; font-size: 0.75rem; margin-top: 1rem; }
+        .hint code { background: #334155; padding: 1px 4px; border-radius: 3px; color: #94a3b8; }
+        .toggle-row.disabled { opacity: 0.35; pointer-events: none; }
+        .toggle-row.disabled .slider { background: #334155 !important; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <h1>🔧 TechnicalApp Dashboard</h1>
+        <div class="user-info">
+            {{ username }} <span class="role-badge">{{ role }}</span>
+            {% if locked_orchestrator %}
+            <span class="locked-badge">🔒 {{ locked_orchestrator }}</span>
+            {% endif %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid-3">
+            <!-- LEFT: Orchestrator Info -->
+            <div class="card">
+                <h2>📖 Orchestrator Overview</h2>
+                <div class="info-panel" id="info-panel">
+                    <h3 id="info-title">{{ orch_info.title }}</h3>
+                    <ul id="info-points">
+                        {% for point in orch_info.points %}
+                        <li>{{ point }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% if locked_orchestrator %}
+                <p class="hint">
+                    You are logged in as <code>{{ username }}</code> with access restricted to
+                    <strong>{{ locked_orchestrator }}</strong> orchestrator only.
+                </p>
+                {% else %}
+                <p class="hint">
+                    Change the orchestrator in the config panel to see different integration details.
+                </p>
+                {% endif %}
+            </div>
+
+            <!-- CENTER: Configuration -->
+            <div class="card">
+                <h2>⚙️ Pipeline Configuration</h2>
+
+                <label for="orchestrator">Orchestrator
+                    {% if locked_orchestrator %}<span class="locked-badge">🔒 locked</span>{% endif %}
+                </label>
+                <select id="orchestrator" onchange="updateInfoPanel()" {% if locked_orchestrator %}disabled{% endif %}>
+                    {% for o in orchestrators %}
+                    <option value="{{ o }}" {% if o == config.orchestrator %}selected{% endif %}>{{ o }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="llm_provider">LLM Provider</label>
+                <select id="llm_provider" onchange="document.getElementById('llm_model').value = ''">
+                    {% for p in llm_providers %}
+                    <option value="{{ p }}" {% if p == config.llm_provider %}selected{% endif %}>{{ p }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="llm_model">LLM Model (blank = auto)</label>
+                <input type="text" id="llm_model" value="{{ config.llm_model }}" placeholder="e.g. gpt-4o-mini">
+
+                <hr style="border-color: #334155; margin-top: 1.5rem;">
+
+                <h2 style="margin-top: 1rem;">📚 Data Sources <span id="ds-lock-badge" style="font-size: 0.65rem; color: #fbbf24; font-weight: normal;">(auto-set by orchestrator)</span></h2>
+
+                <div class="toggle-row" id="ds-kb-row">
+                    <label class="toggle">
+                        <input type="checkbox" id="kb_enabled" {% if config.kb_enabled %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
+                    <span style="color: #e2e8f0; font-size: 0.85rem;" id="ds-kb-label">KB Files (pre-tokenized .txt)</span>
+                </div>
+
+                <div class="toggle-row" id="ds-rag-row">
+                    <label class="toggle">
+                        <input type="checkbox" id="rag_enabled" {% if config.rag_enabled %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
+                    <span style="color: #e2e8f0; font-size: 0.85rem;" id="ds-rag-label">ChromaDB RAG Search</span>
+                </div>
+
+                <div class="toggle-row" id="ds-kg-row">
+                    <label class="toggle">
+                        <input type="checkbox" id="kg_enabled" {% if config.kg_enabled %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
+                    <span style="color: #e2e8f0; font-size: 0.85rem;" id="ds-kg-label">Knowledge Graph (NetworkX)</span>
+                </div>
+
+                <hr style="border-color: #334155; margin-top: 1.5rem;">
+
+                <h2 style="margin-top: 1rem;">🛡️ Protegrity Settings</h2>
+
+                <div class="toggle-row">
+                    <label class="toggle">
+                        <input type="checkbox" id="guardrail_enabled" {% if config.guardrail_enabled %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
+                    <span style="color: #e2e8f0; font-size: 0.85rem;">Semantic Guardrail</span>
+                </div>
+
+                <label for="risk_threshold">Guardrail Risk Threshold (0 = allow all, 1 = block all)</label>
+                <input type="number" id="risk_threshold" value="{{ config.risk_threshold }}"
+                       min="0" max="1" step="0.05">
+
+                <div class="toggle-row">
+                    <label class="toggle">
+                        <input type="checkbox" id="discovery_enabled" {% if config.discovery_enabled %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
+                    <span style="color: #e2e8f0; font-size: 0.85rem;">PII Discovery</span>
+                </div>
+
+                <label for="classify_threshold">PII Classification Confidence (0 = detect everything, 1 = high confidence only)</label>
+                <input type="number" id="classify_threshold" value="{{ config.classify_threshold }}"
+                       min="0" max="1" step="0.05">
+
+                <label for="protegrity_user">Gate 2 Unprotect User</label>
+                <select id="protegrity_user">
+                    {% for u in protegrity_users %}
+                    <option value="{{ u }}" {% if u == config.protegrity_user %}selected{% endif %}>{{ u }}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="toggle-row">
+                    <label class="toggle">
+                        <input type="checkbox" id="show_trace" {% if config.show_trace %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
+                    <span style="color: #e2e8f0; font-size: 0.85rem;">Show Pipeline Trace</span>
+                </div>
+
+                <button class="btn btn-primary" onclick="saveConfig()">💾 Save Configuration</button>
+                <div id="config-status" class="status-bar"></div>
+            </div>
+
+            <!-- RIGHT: Customer Selection -->
+            <div class="card">
+                <h2>👤 Select Customer for Chat</h2>
+                <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1rem;">
+                    Choose a customer to test the pipeline with the current configuration.
+                </p>
+                <div class="customer-list">
+                    {% for cid in customer_ids %}
+                    <a href="{{ url_for('chat', customer_id=cid) }}" class="customer-btn">{{ cid }}</a>
+                    {% endfor %}
+                </div>
+
+                <p class="section-title">Current Configuration Summary</p>
+                <div style="background: #0f172a; border-radius: 6px; padding: 1rem; font-family: monospace; font-size: 0.8rem;">
+                    <div>Orchestrator: <span style="color: #38bdf8;" id="summary-orch">{{ config.orchestrator }}</span></div>
+                    <div>LLM: <span style="color: #a78bfa;" id="summary-llm">{{ config.llm_provider }}/{{ config.llm_model }}</span></div>
+                    <div>Guardrail Threshold: <span style="color: #fbbf24;" id="summary-threshold">{{ config.risk_threshold }}</span></div>
+                    <div>Guardrail: <span style="color: #22c55e;" id="summary-guardrail">{{ "ON" if config.guardrail_enabled else "OFF" }}</span></div>
+                    <div>Discovery: <span style="color: #22c55e;" id="summary-discovery">{{ "ON" if config.discovery_enabled else "OFF" }}</span></div>
+                    <div>Classify Confidence: <span style="color: #fbbf24;" id="summary-classify">{{ config.classify_threshold }}</span></div>
+                    <div>Unprotect as: <span style="color: #fb923c;" id="summary-user">{{ config.protegrity_user }}</span></div>
+                    <div>KB Files: <span style="color: #22c55e;" id="summary-kb">{{ "ON" if config.kb_enabled else "OFF" }}</span></div>
+                    <div>RAG Search: <span style="color: #22c55e;" id="summary-rag">{{ "ON" if config.rag_enabled else "OFF" }}</span></div>
+                    <div>Knowledge Graph: <span style="color: #22c55e;" id="summary-kg">{{ "ON" if config.kg_enabled else "OFF" }}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ALL_ORCH_INFO = {
+            "direct": {
+                "title": "Direct LLM \u2014 Baseline Pipeline",
+                "points": [
+                    "Fastest path \u2014 single LLM call, minimal latency, no orchestration overhead.",
+                    "Protegrity Gate 1 tokenizes all PII before the prompt ever reaches the LLM.",
+                    "Gate 2 applies per-user detokenization policies \u2014 only authorized roles see real data.",
+                    "Proves Protegrity\u2019s dual-gate works transparently with any LLM provider.",
+                    "Data sources: KB files only \u2014 pre-tokenized customer profiles."
+                ],
+                "data_sources": {"kb": true, "rag": false, "kg": false}
+            },
+            "langgraph": {
+                "title": "LangGraph \u2014 Composable DAG Pipeline",
+                "points": [
+                    "StateGraph with modular nodes \u2014 retrieval steps are composable, reorderable graph nodes.",
+                    "Combines all three data sources (KB + RAG + KG) into a single pipeline.",
+                    "Protegrity tokens flow through every node \u2014 the graph never materializes raw PII.",
+                    "Shows how DAG orchestration scales with Protegrity: add nodes without weakening protection.",
+                    "Best for complex multi-source workflows where each step handles pre-protected data."
+                ],
+                "data_sources": {"kb": true, "rag": true, "kg": true}
+            },
+            "crewai": {
+                "title": "CrewAI \u2014 Multi-Agent Reasoning",
+                "points": [
+                    "Specialized agents (Research + Response) collaborate over tokenized data only.",
+                    "Research Agent navigates the Knowledge Graph for cross-entity financial relationships.",
+                    "Agents never see real PII \u2014 Protegrity tokens are opaque across the entire agent crew.",
+                    "Demonstrates separation-of-duties: agents operate on protected data, Gate 2 reveals on exit.",
+                    "Best for relationship-heavy queries: account links, transaction patterns, loan cross-refs."
+                ],
+                "data_sources": {"kb": true, "rag": false, "kg": true}
+            },
+            "llamaindex": {
+                "title": "LlamaIndex \u2014 Native Semantic Retrieval",
+                "points": [
+                    "Purpose-built for RAG \u2014 ChromaDB vector search over pre-tokenized documents.",
+                    "Semantic similarity finds relevant customer data even across tokenized fields.",
+                    "Protegrity tokens in the vector index guarantee zero PII exposure at the embedding layer.",
+                    "Native LLM adapters (OpenAI, Anthropic, Groq) with clean Protegrity integration.",
+                    "Best when semantic search quality matters \u2014 retrieval over protected document collections."
+                ],
+                "data_sources": {"kb": true, "rag": true, "kg": false}
+            }
+        };
+
+        function updateInfoPanel() {
+            const orch = document.getElementById('orchestrator').value;
+            const info = ALL_ORCH_INFO[orch] || ALL_ORCH_INFO['direct'];
+            document.getElementById('info-title').textContent = info.title;
+            const ul = document.getElementById('info-points');
+            ul.innerHTML = info.points.map(p => '<li>' + p + '</li>').join('');
+
+            // Lock data sources to orchestrator's recommended set
+            if (info.data_sources) {
+                const ds = info.data_sources;
+                _setDataSourceToggle('kb_enabled', 'ds-kb-row', ds.kb);
+                _setDataSourceToggle('rag_enabled', 'ds-rag-row', ds.rag);
+                _setDataSourceToggle('kg_enabled', 'ds-kg-row', ds.kg);
+            }
+        }
+
+        function _setDataSourceToggle(checkboxId, rowId, allowed) {
+            const cb = document.getElementById(checkboxId);
+            const row = document.getElementById(rowId);
+            cb.checked = allowed;
+            cb.disabled = !allowed;
+            if (allowed) {
+                row.classList.remove('disabled');
+            } else {
+                row.classList.add('disabled');
+            }
+        }
+
+        // Apply on page load
+        document.addEventListener('DOMContentLoaded', function() { updateInfoPanel(); });
+
+        async function saveConfig() {
+            const config = {
+                orchestrator: document.getElementById('orchestrator').value,
+                llm_provider: document.getElementById('llm_provider').value,
+                llm_model: document.getElementById('llm_model').value,
+                risk_threshold: parseFloat(document.getElementById('risk_threshold').value),
+                classify_threshold: parseFloat(document.getElementById('classify_threshold').value),
+                guardrail_enabled: document.getElementById('guardrail_enabled').checked,
+                discovery_enabled: document.getElementById('discovery_enabled').checked,
+                protegrity_user: document.getElementById('protegrity_user').value,
+                show_trace: document.getElementById('show_trace').checked,
+                kb_enabled: document.getElementById('kb_enabled').checked,
+                rag_enabled: document.getElementById('rag_enabled').checked,
+                kg_enabled: document.getElementById('kg_enabled').checked,
+            };
+
+            const res = await fetch('{{ url_for("api_update_config") }}', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(config),
+            });
+            const data = await res.json();
+
+            const status = document.getElementById('config-status');
+            status.textContent = '\u2705 Updated: ' + data.updated.join(', ');
+            status.className = 'status-bar show success';
+
+            document.getElementById('summary-orch').textContent = config.orchestrator;
+            document.getElementById('summary-llm').textContent = config.llm_provider + '/' + (config.llm_model || 'auto');
+            document.getElementById('summary-threshold').textContent = config.risk_threshold;
+            document.getElementById('summary-guardrail').textContent = config.guardrail_enabled ? 'ON' : 'OFF';
+            document.getElementById('summary-discovery').textContent = config.discovery_enabled ? 'ON' : 'OFF';
+            document.getElementById('summary-classify').textContent = config.classify_threshold;
+            document.getElementById('summary-user').textContent = config.protegrity_user;
+            document.getElementById('summary-kb').textContent = config.kb_enabled ? 'ON' : 'OFF';
+            document.getElementById('summary-rag').textContent = config.rag_enabled ? 'ON' : 'OFF';
+            document.getElementById('summary-kg').textContent = config.kg_enabled ? 'ON' : 'OFF';
+
+            updateInfoPanel();
+            setTimeout(function() { status.className = 'status-bar'; }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+Customer Profile: CUST-100006
+Name: [PERSON]e9B3 fNNFLH[/PERSON]
+Email: [EMAIL_ADDRESS]1hF6bokBmP@example.org[/EMAIL_ADDRESS]
+Phone: [PHONE_NUMBER]660.867.9156x407[/PHONE_NUMBER]
+DOB: [DATETIME]3150-11-20[/DATETIME]
+SSN: [SOCIAL_SECURITY_ID]954-83-8657[/SOCIAL_SECURITY_ID]
+Address: [LOCATION]JlU7s[/LOCATION] [LOCATION]V17FG EHOd5p5[/LOCATION], [LOCATION]imtk 5TAJT2[/LOCATION], [LOCATION]N5[/LOCATION] [LOCATION]0AdEH[/LOCATION]
+
+=== Bank Accounts ===
+  ACCT-354533 | certificate_of_deposit | Acct#: 4346505855 | Balance: $225,298.84 | Opened: 2018-08-17 | Status: active
+  ACCT-415759 | savings | Acct#: 8238377072 | Balance: $34,839.19 | Opened: 2016-04-16 | Status: active
+
+=== Credit Cards ===
+  CARD-555791 | Mastercard Black | Card#: [CREDIT_CARD]38083060742739[/CREDIT_CARD] | Exp: 06/30 | Limit: $5,000 | Balance: $253.07 | Available: $4,746.93 | Points: 20,164 | Status: active
+  CARD-855917 | Amex Black | Card#: [CREDIT_CARD]5624191092637[/CREDIT_CARD] | Exp: 07/27 | Limit: $10,000 | Balance: $7,553.78 | Available: $2,446.22 | Points: 51,261 | Status: active
+
+=== Loans & Contracts ===
+  LOAN-750318 | Mortgage | Principal: $25,000.00 | Rate: 5.55% | Term: 240 months | Payment: $172.68/mo | Remaining: $9,559.62 | Status: active
+  LOAN-732512 | Auto Loan | Principal: $500,000.00 | Rate: 5.85% | Term: 36 months | Payment: $15,177.01/mo | Remaining: $177,685.00 | Status: delinquent
+  LOAN-405605 | Personal Loan | Principal: $500,000.00 | Rate: 5.64% | Term: 240 months | Payment: $3,479.09/mo | Remaining: $461,708.22 | Status: paid_off
+
+=== Recent Transactions ===
+  2026-03-13 | Shaw, Nelson and Martin | +$7,764.89 | salary | completed
+  2026-03-13 | Private Landlord | -$2,327.26 | rent | completed
+  2026-03-11 | Whole Foods | -$48.00 | grocery | completed
+  2026-03-11 | N/A | -$687.80 | atm_withdrawal | completed
+  2026-03-08 | Airbnb | -$3,551.44 | travel | completed
+  2026-03-07 | N/A | -$4,156.83 | atm_withdrawal | completed
+  2026-03-07 | N/A | +$2,581.18 | transfer_in | completed
+  2026-03-04 | PlayStation Store | -$2,732.90 | entertainment | completed
+  2026-03-02 | Microsoft 365 | -$4,142.84 | subscription | completed
+  2026-03-01 | Allstate | -$2,382.12 | insurance | completed
+  2026-02-26 | Olive Garden | -$72.97 | restaurant | completed
+  2026-02-26 | Blue Cross | -$372.14 | healthcare | completed
+  2026-02-22 | Dalton Ltd | +$3,603.75 | direct_deposit | completed
+  2026-02-21 | Private Landlord | -$801.83 | rent | completed
+  2026-02-21 | N/A | +$1,528.64 | transfer_in | completed
