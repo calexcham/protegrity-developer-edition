@@ -1,0 +1,8 @@
+.env
+.env.local
+__pycache__/
+*.pyc
+*.pyo
+.composio/
+google_auth/token.json
+google_auth/state.json
