@@ -132,6 +132,21 @@ install_docker() {
     echo ""
     echo "━━━ Installing Docker & Docker Compose ━━━"
 
+    case "$(uname -s)" in
+        Darwin)
+            echo "macOS detected."
+            if command -v brew &>/dev/null; then
+                echo "Installing Docker Desktop via Homebrew …"
+                brew install --cask docker
+                echo "Please launch Docker Desktop from Applications and wait for it to start."
+            else
+                echo "Please install Docker Desktop from https://www.docker.com/products/docker-desktop"
+            fi
+            return
+            ;;
+    esac
+
+    # Linux installation
     if ! command -v curl &>/dev/null; then
         sudo apt-get update -qq 2>/dev/null
         sudo apt-get install -y curl 2>/dev/null
@@ -228,7 +243,14 @@ install_python_sdk() {
     cd "$python_dir"
 
     # Relax Python version constraint (v1.1.0+ requires >=3.12.11 but works on >=3.12)
-    grep -rl '>=3.12.11' . --include='*.toml' --include='*.cfg' 2>/dev/null | xargs sed -i 's/>=3.12.11/>=3.12/g' 2>/dev/null || true
+    # Cross-platform: macOS BSD sed requires -i '' while GNU sed uses -i
+    grep -rl --include='*.toml' --include='*.cfg' '>=3.12.11' . 2>/dev/null | while read -r f; do
+        if sed --version 2>/dev/null | grep -q GNU; then
+            sed -i 's/>=3.12.11/>=3.12/g' "$f"
+        else
+            sed -i '' 's/>=3.12.11/>=3.12/g' "$f"
+        fi
+    done 2>/dev/null || true
 
     $PIP install -r requirements.txt 2>/dev/null || true
     $PIP install . --no-deps --force-reinstall
