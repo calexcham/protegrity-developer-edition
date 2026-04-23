@@ -81,6 +81,13 @@ ensure_streamlit() {
 # ── Start ChromaDB Viewer ──────────────────────────────────────────────
 echo ""
 echo "=== Starting ChromaDB Viewer on port 8501 ==="
+
+# Auto-build the ChromaDB index if it doesn't exist yet (fresh clone)
+if [ ! -d "${REPO_DIR}/chroma_db" ]; then
+    warn "chroma_db/ not found — building index from knowledge base ..."
+    python scripts/browse_chromadb.py rebuild 2>&1 || warn "ChromaDB rebuild failed."
+fi
+
 if ensure_streamlit; then
     streamlit run scripts/chromadb_viewer.py \
         --server.headless true \

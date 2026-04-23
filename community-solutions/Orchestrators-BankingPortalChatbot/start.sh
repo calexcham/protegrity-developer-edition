@@ -198,6 +198,12 @@ start_chromadb_viewer() {
         echo "${chroma_pids}" | xargs kill 2>/dev/null || true
         sleep 1
     fi
+    # Auto-build the ChromaDB index if it doesn't exist yet (fresh clone)
+    if [ ! -d "${SCRIPT_DIR}/chroma_db" ]; then
+        info "chroma_db/ not found — building index from knowledge base ..."
+        python3 scripts/browse_chromadb.py rebuild 2>&1 || warn "ChromaDB rebuild failed — viewer may show empty data."
+    fi
+
     if ensure_streamlit; then
         streamlit run scripts/chromadb_viewer.py \
             --server.headless true \
