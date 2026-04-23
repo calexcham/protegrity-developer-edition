@@ -46,8 +46,13 @@ customer dataset (`customers_protected.json`).
 ### Docker (recommended)
 
 ```bash
+# 0. Ensure Docker is installed (see Prerequisites below)
+docker --version          # must show Docker ≥ 20.x
+docker compose version    # must show ≥ 2.30
+
 # 1. Clone and enter the project
-cd Orchestrators_v1.3
+git clone https://github.com/calexcham/protegrity-developer-edition.git
+cd protegrity-developer-edition/community-solutions/Orchestrators-BankingPortalChatbot
 
 # 2. Install Protegrity Developer Edition containers (first time only)
 bash scripts/setup_protegrity.sh
@@ -90,17 +95,29 @@ bash scripts/start_apps.sh
 
 ## Prerequisites
 
+- **Docker** + **Docker Compose ≥ 2.30** — **required** for both Protegrity services and the app containers
+  > `start.sh` will fail with *"Docker is not installed"* if `docker` is not on `PATH`.
+  >
+  > **Install Docker Engine (Linux):**
+  > ```bash
+  > # Ubuntu/Debian — official convenience script
+  > curl -fsSL https://get.docker.com | sudo sh
+  >
+  > # Add your user to the docker group (avoids permission errors)
+  > sudo usermod -aG docker $USER && newgrp docker
+  >
+  > # Verify
+  > docker --version && docker compose version
+  > ```
+  >
+  > **macOS / Windows:** Install [Docker Desktop](https://docs.docker.com/get-docker/).
+
 - **Python 3.12.11+** (required by `protegrity-developer-python >= 1.1.0`; 3.13 also supported)
   > On Ubuntu/Debian, if your system Python is older, install from the deadsnakes PPA:
   > ```bash
   > sudo add-apt-repository ppa:deadsnakes/ppa
   > sudo apt-get update && sudo apt-get install -y python3.12 python3.12-venv
   > bash scripts/setup_env.sh --python python3.12
-  > ```
-- **Docker** + **Docker Compose ≥ 2.30** (for Protegrity containers)
-  > On Linux, your user must be in the `docker` group to avoid permission errors:
-  > ```bash
-  > sudo usermod -aG docker $USER && newgrp docker
   > ```
 - **Git**
 - **LLM API keys** — at least one of:
