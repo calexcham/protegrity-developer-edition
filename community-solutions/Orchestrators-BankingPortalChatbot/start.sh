@@ -253,9 +253,17 @@ case "${CMD}" in
             echo "${chroma_pids}" | xargs kill 2>/dev/null || true
         fi
         ensure_protegrity
-        # Pre-create bind-mount directories so Docker doesn't create them as root
-        mkdir -p "${SCRIPT_DIR}/TechnicalApp/chat_history_tech" \
-                 "${SCRIPT_DIR}/BusinessCustomerApp/chat_history"
+        # Pre-create bind-mount directories and fix ownership if needed
+        for _bm_dir in "${SCRIPT_DIR}/TechnicalApp/chat_history_tech" \
+                       "${SCRIPT_DIR}/BusinessCustomerApp/chat_history"; do
+            mkdir -p "${_bm_dir}" 2>/dev/null || true
+            if [ ! -w "${_bm_dir}" ]; then
+                info "Fixing permissions on ${_bm_dir} ..."
+                sudo chown -R "$(id -u):$(id -g)" "${_bm_dir}" 2>/dev/null \
+                    || sudo chmod -R 777 "${_bm_dir}" 2>/dev/null \
+                    || warn "Could not fix permissions on ${_bm_dir} — chat history may fail."
+            fi
+        done
         ${COMPOSE} up --build -d
         start_chromadb_viewer
         ok "Apps restarted."
@@ -314,10 +322,19 @@ ensure_protegrity
 hr
 echo -e "${BOLD}Banking Portal Apps${NC}"
 
-# Pre-create bind-mount directories so Docker doesn't create them as root
-# (the container runs as uid 1000 and needs write access)
-mkdir -p "${SCRIPT_DIR}/TechnicalApp/chat_history_tech" \
-         "${SCRIPT_DIR}/BusinessCustomerApp/chat_history"
+# Pre-create bind-mount directories and fix ownership if needed.
+# On a fresh clone these don't exist; Docker would create them as root,
+# but the container runs as uid 1000 (appuser) and needs write access.
+for _bm_dir in "${SCRIPT_DIR}/TechnicalApp/chat_history_tech" \
+               "${SCRIPT_DIR}/BusinessCustomerApp/chat_history"; do
+    mkdir -p "${_bm_dir}" 2>/dev/null || true
+    if [ ! -w "${_bm_dir}" ]; then
+        info "Fixing permissions on ${_bm_dir} ..."
+        sudo chown -R "$(id -u):$(id -g)" "${_bm_dir}" 2>/dev/null \
+            || sudo chmod -R 777 "${_bm_dir}" 2>/dev/null \
+            || warn "Could not fix permissions on ${_bm_dir} — chat history may fail."
+    fi
+done
 
 info "Building images and starting containers ..."
 ${COMPOSE} up --build -d
