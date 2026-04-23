@@ -42,17 +42,28 @@ ensure_python() {
 
     # Try deadsnakes PPA (Ubuntu/Debian)
     if command -v apt-get &>/dev/null; then
-        echo "  Attempting to install Python 3.12 via deadsnakes PPA …"
-        if sudo add-apt-repository -y ppa:deadsnakes/ppa 2>/dev/null \
-           && sudo apt-get update -qq 2>/dev/null \
-           && sudo apt-get install -y python3.12 python3.12-venv python3.12-dev 2>/dev/null; then
+        echo "  Attempting to install a compatible Python via deadsnakes PPA …"
+        sudo add-apt-repository -y ppa:deadsnakes/ppa 2>/dev/null || true
+        sudo apt-get update -qq 2>/dev/null || true
+
+        # Try Python 3.13 first (deadsnakes doesn't ship newer 3.12.x on noble)
+        if sudo apt-get install -y python3.13 python3.13-venv python3.13-dev 2>/dev/null; then
             local new_ver
-            new_ver=$(python3.12 -c "import sys; print('{}.{}.{}'.format(*sys.version_info[:3]))" 2>/dev/null || echo "0.0.0")
+            new_ver=$(python3.13 -c "import sys; print('{}.{}.{}'.format(*sys.version_info[:3]))" 2>/dev/null || echo "0.0.0")
+            echo -e "${GREEN}✔${NC}  Python $new_ver installed successfully."
+            PYTHON_CMD="python3.13"
+            return 0
+        fi
+
+        # Fall back to Python 3.12 (may work on older Ubuntu releases)
+        if sudo apt-get install -y python3.12 python3.12-venv python3.12-dev 2>/dev/null; then
+            local new_ver12
+            new_ver12=$(python3.12 -c "import sys; print('{}.{}.{}'.format(*sys.version_info[:3]))" 2>/dev/null || echo "0.0.0")
             local nma nmi npa
-            IFS='.' read -r nma nmi npa <<< "$new_ver"
+            IFS='.' read -r nma nmi npa <<< "$new_ver12"
             npa="${npa:-0}"
             if (( nma >= 3 && nmi >= 12 && npa >= 11 )); then
-                echo -e "${GREEN}✔${NC}  Python $new_ver installed successfully."
+                echo -e "${GREEN}✔${NC}  Python $new_ver12 installed successfully."
                 PYTHON_CMD="python3.12"
                 return 0
             fi
@@ -60,9 +71,10 @@ ensure_python() {
     fi
 
     echo ""
-    echo "  Install Python 3.12.11+ manually:"
+    echo "  Could not auto-install a compatible Python."
+    echo "  Install Python 3.13 (recommended) or Python 3.12.11+ manually:"
     echo "    sudo add-apt-repository ppa:deadsnakes/ppa"
-    echo "    sudo apt-get update && sudo apt-get install -y python3.12 python3.12-venv"
+    echo "    sudo apt-get update && sudo apt-get install -y python3.13 python3.13-venv"
     echo "  Then re-run this script."
     exit 1
 }

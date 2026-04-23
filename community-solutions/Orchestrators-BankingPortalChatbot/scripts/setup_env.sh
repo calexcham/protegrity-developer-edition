@@ -99,12 +99,24 @@ check_python_version() {
     if (( major < 3 || (major == 3 && minor < 12) || (major == 3 && minor == 12 && patch < 11) )); then
         warn "Python $ver detected. protegrity-developer-python >= 1.1.0 requires Python >= 3.12.11."
 
-        # Try to auto-install Python 3.12.11+ via deadsnakes PPA (Ubuntu/Debian)
+        # Try to auto-install a compatible Python via deadsnakes PPA (Ubuntu/Debian)
         if command -v apt-get &>/dev/null; then
+            sudo add-apt-repository -y ppa:deadsnakes/ppa 2>/dev/null || true
+            sudo apt-get update -qq 2>/dev/null || true
+
+            # Try Python 3.13 first (deadsnakes doesn't ship newer 3.12.x on noble)
+            info "Attempting to install Python 3.13 via deadsnakes PPA …"
+            if sudo apt-get install -y python3.13 python3.13-venv python3.13-dev 2>/dev/null; then
+                local new_ver13
+                new_ver13=$(python3.13 -c "import sys; print('{}.{}.{}'.format(*sys.version_info[:3]))" 2>/dev/null || echo "0.0.0")
+                ok "Python $new_ver13 installed successfully."
+                PYTHON_BIN="python3.13"
+                return 0
+            fi
+
+            # Fall back to Python 3.12 (may work on older Ubuntu releases)
             info "Attempting to install Python 3.12 via deadsnakes PPA …"
-            if sudo add-apt-repository -y ppa:deadsnakes/ppa 2>/dev/null \
-               && sudo apt-get update -qq 2>/dev/null \
-               && sudo apt-get install -y python3.12 python3.12-venv python3.12-dev 2>/dev/null; then
+            if sudo apt-get install -y python3.12 python3.12-venv python3.12-dev 2>/dev/null; then
                 local new_ver
                 new_ver=$(python3.12 -c "import sys; print('{}.{}.{}'.format(*sys.version_info[:3]))" 2>/dev/null || echo "0.0.0")
                 local nma nmi npa
@@ -119,14 +131,15 @@ check_python_version() {
         fi
 
         echo ""
-        echo "  To fix this, install Python 3.12.11+ manually:"
+        echo "  Could not auto-install a compatible Python."
+        echo "  Install Python 3.13 (recommended) or Python 3.12.11+ manually:"
         echo ""
         echo "    # Ubuntu / Debian (deadsnakes PPA)"
         echo "    sudo add-apt-repository ppa:deadsnakes/ppa"
-        echo "    sudo apt-get update && sudo apt-get install -y python3.12 python3.12-venv"
+        echo "    sudo apt-get update && sudo apt-get install -y python3.13 python3.13-venv"
         echo ""
         echo "    # Then re-run:"
-        echo "    bash scripts/setup_env.sh --python python3.12"
+        echo "    bash scripts/setup_env.sh --python python3.13"
         echo ""
         fail "Python >= 3.12.11 is required."
     fi
