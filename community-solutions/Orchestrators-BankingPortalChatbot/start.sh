@@ -253,6 +253,9 @@ case "${CMD}" in
             echo "${chroma_pids}" | xargs kill 2>/dev/null || true
         fi
         ensure_protegrity
+        # Pre-create bind-mount directories so Docker doesn't create them as root
+        mkdir -p "${SCRIPT_DIR}/TechnicalApp/chat_history_tech" \
+                 "${SCRIPT_DIR}/BusinessCustomerApp/chat_history"
         ${COMPOSE} up --build -d
         start_chromadb_viewer
         ok "Apps restarted."
@@ -310,6 +313,12 @@ ensure_protegrity
 
 hr
 echo -e "${BOLD}Banking Portal Apps${NC}"
+
+# Pre-create bind-mount directories so Docker doesn't create them as root
+# (the container runs as uid 1000 and needs write access)
+mkdir -p "${SCRIPT_DIR}/TechnicalApp/chat_history_tech" \
+         "${SCRIPT_DIR}/BusinessCustomerApp/chat_history"
+
 info "Building images and starting containers ..."
 ${COMPOSE} up --build -d
 
