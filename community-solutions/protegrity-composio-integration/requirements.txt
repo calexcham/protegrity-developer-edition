@@ -1,0 +1,11 @@
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+python-dotenv>=1.0.0
+httpx>=0.27.0
+openai>=1.30.0
+# composio Python SDK - requires project API key (pak_...) from platform.composio.dev
+# The CLI binary at ~/.composio/composio handles auth for the demo
+composio-core==0.5.9
+composio-openai==0.5.9
+requests>=2.31.0
+protegrity-developer-python
