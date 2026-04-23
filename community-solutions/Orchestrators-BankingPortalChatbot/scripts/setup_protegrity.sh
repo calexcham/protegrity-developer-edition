@@ -12,26 +12,84 @@ set -euo pipefail
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 CLONE_BASE="${REPO_DIR}/.protegrity-install"
 
+RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; NC='\033[0m'
+
+# ── Ensure Python >= 3.12.11 is available ─────────────────────────────
+ensure_python() {
+    # Find the best available python
+    local py=""
+    for candidate in python3.13 python3.12 python3; do
+        if command -v "$candidate" &>/dev/null; then
+            py="$candidate"; break
+        fi
+    done
+    if [ -z "$py" ]; then
+        echo -e "${RED}✖${NC} No Python interpreter found."
+        exit 1
+    fi
+
+    local ver major minor patch
+    ver=$("$py" -c "import sys; print('{}.{}.{}'.format(*sys.version_info[:3]))")
+    IFS='.' read -r major minor patch <<< "$ver"
+    patch="${patch:-0}"
+
+    if (( major >= 3 && minor >= 12 && patch >= 11 )) || (( major >= 3 && minor >= 13 )); then
+        PYTHON_CMD="$py"
+        return 0
+    fi
+
+    echo -e "${YELLOW}⚠${NC}  Python $ver detected — need >= 3.12.11 for Protegrity SDK."
+
+    # Try deadsnakes PPA (Ubuntu/Debian)
+    if command -v apt-get &>/dev/null; then
+        echo "  Attempting to install Python 3.12 via deadsnakes PPA …"
+        if sudo add-apt-repository -y ppa:deadsnakes/ppa 2>/dev/null \
+           && sudo apt-get update -qq 2>/dev/null \
+           && sudo apt-get install -y python3.12 python3.12-venv python3.12-dev 2>/dev/null; then
+            local new_ver
+            new_ver=$(python3.12 -c "import sys; print('{}.{}.{}'.format(*sys.version_info[:3]))" 2>/dev/null || echo "0.0.0")
+            local nma nmi npa
+            IFS='.' read -r nma nmi npa <<< "$new_ver"
+            npa="${npa:-0}"
+            if (( nma >= 3 && nmi >= 12 && npa >= 11 )); then
+                echo -e "${GREEN}✔${NC}  Python $new_ver installed successfully."
+                PYTHON_CMD="python3.12"
+                return 0
+            fi
+        fi
+    fi
+
+    echo ""
+    echo "  Install Python 3.12.11+ manually:"
+    echo "    sudo add-apt-repository ppa:deadsnakes/ppa"
+    echo "    sudo apt-get update && sudo apt-get install -y python3.12 python3.12-venv"
+    echo "  Then re-run this script."
+    exit 1
+}
+
+PYTHON_CMD=""
+ensure_python
+
 # Auto-create and activate venv if not already in one
 VENV_DIR="${REPO_DIR}/.venv"
 if [ -z "${VIRTUAL_ENV:-}" ]; then
     if [ ! -d "$VENV_DIR" ] || [ ! -f "$VENV_DIR/bin/activate" ]; then
         rm -rf "$VENV_DIR"
         echo "Creating virtual environment at ${VENV_DIR} …"
-        if ! python3 -m venv "$VENV_DIR" 2>/dev/null; then
+        if ! "$PYTHON_CMD" -m venv "$VENV_DIR" 2>/dev/null; then
             # Auto-install python3-venv if missing
-            PYVER=$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
+            PYVER=$("$PYTHON_CMD" -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
             echo "python3-venv not found — installing …"
             sudo apt-get update -qq 2>/dev/null
             sudo apt-get install -y "python${PYVER}-venv" 2>/dev/null \
                 || sudo apt-get install -y python3-venv 2>/dev/null \
                 || {
-                    echo -e "\033[0;31m✖\033[0m Failed to install python3-venv. Please install manually:"
+                    echo -e "${RED}✖${NC} Failed to install python3-venv. Please install manually:"
                     echo "    sudo apt-get install -y python${PYVER}-venv"
                     exit 1
                 }
             rm -rf "$VENV_DIR"
-            python3 -m venv "$VENV_DIR"
+            "$PYTHON_CMD" -m venv "$VENV_DIR"
         fi
     fi
     echo "Activating virtual environment …"
@@ -61,8 +119,6 @@ fi
 
 EDITION_REPO="https://github.com/Protegrity-Developer-Edition/protegrity-developer-edition.git"
 PYTHON_REPO="https://github.com/Protegrity-Developer-Edition/protegrity-developer-python.git"
-
-RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; NC='\033[0m'
 
 info()  { echo -e "${GREEN}✔${NC} $*"; }
 warn()  { echo -e "${YELLOW}⚠${NC} $*"; }
