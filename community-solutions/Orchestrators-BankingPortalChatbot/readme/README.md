@@ -112,13 +112,15 @@ bash scripts/start_apps.sh
   >
   > **macOS / Windows:** Install [Docker Desktop](https://docs.docker.com/get-docker/).
 
-- **Python 3.12.11+** (required by `protegrity-developer-python >= 1.1.0`; 3.13 also supported)
-  > On Ubuntu/Debian, if your system Python is older, install from the deadsnakes PPA:
+- **Python 3.12.11+ or 3.13** (required by `protegrity-developer-python >= 1.1.0`)
+  > **Ubuntu 24.04 (noble):** The system Python 3.12.3 is too old and deadsnakes
+  > does not ship a newer 3.12.x for noble. Install **Python 3.13** instead:
   > ```bash
   > sudo add-apt-repository ppa:deadsnakes/ppa
-  > sudo apt-get update && sudo apt-get install -y python3.12 python3.12-venv
-  > bash scripts/setup_env.sh --python python3.12
+  > sudo apt-get update && sudo apt-get install -y python3.13 python3.13-venv
+  > bash scripts/setup_env.sh --python python3.13
   > ```
+  > `setup_protegrity.sh` will attempt this automatically.
 - **Git**
 - **LLM API keys** — at least one of:
   - [OpenAI](https://platform.openai.com/) (`OPENAI_API_KEY`)
