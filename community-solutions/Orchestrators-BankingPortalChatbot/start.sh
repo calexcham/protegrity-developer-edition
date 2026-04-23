@@ -159,6 +159,36 @@ Please run the setup script first:
     wait_for_protegrity
 }
 
+# ── Ensure streamlit is available (auto-install into .chromadb-venv) ────
+ensure_streamlit() {
+    # Already on PATH (system, active venv, etc.)
+    command -v streamlit &>/dev/null && return 0
+
+    # Check the dedicated venv
+    local venv="${SCRIPT_DIR}/.chromadb-venv"
+    if [ -x "${venv}/bin/streamlit" ]; then
+        export PATH="${venv}/bin:${PATH}"
+        return 0
+    fi
+
+    # Create the venv and install streamlit + chromadb
+    info "Installing streamlit into ${venv} ..."
+    local py=""
+    for candidate in python3.12 python3.13 python3; do
+        if command -v "${candidate}" &>/dev/null; then py="${candidate}"; break; fi
+    done
+    if [ -z "${py}" ]; then
+        warn "No python3 found — cannot auto-install streamlit."
+        return 1
+    fi
+    "${py}" -m venv "${venv}" \
+        && "${venv}/bin/pip" install --quiet --upgrade pip \
+        && "${venv}/bin/pip" install --quiet streamlit chromadb \
+        && export PATH="${venv}/bin:${PATH}" \
+        && ok "streamlit installed in ${venv}" \
+        || { warn "Failed to install streamlit — ChromaDB Viewer skipped."; return 1; }
+}
+
 start_chromadb_viewer() {
     # ChromaDB uses a file lock — cannot run inside Docker. Launch locally.
     hr
@@ -168,7 +198,7 @@ start_chromadb_viewer() {
         echo "${chroma_pids}" | xargs kill 2>/dev/null || true
         sleep 1
     fi
-    if command -v streamlit &>/dev/null; then
+    if ensure_streamlit; then
         streamlit run scripts/chromadb_viewer.py \
             --server.headless true \
             --server.port 8501 \
@@ -181,8 +211,7 @@ start_chromadb_viewer() {
             warn "Logs: ${SCRIPT_DIR}/chromadb_viewer.log"
         fi
     else
-        warn "streamlit not found — ChromaDB Viewer not started."
-        warn "Install with: pip install streamlit"
+        warn "ChromaDB Viewer not started (streamlit unavailable)."
     fi
 }
 

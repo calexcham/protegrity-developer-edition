@@ -55,6 +55,7 @@ kuzu_test_tmp
 # Chat histories (mounted as volumes at runtime)
 TechnicalApp/chat_history_tech/
 BusinessCustomerApp/chat_history/
+.chromadb-venv/
 
 # Readme-only files
 readme/

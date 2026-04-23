@@ -53,10 +53,35 @@ python BusinessCustomerApp/run.py &
 BIZ_PID=$!
 ok "BusinessCustomerApp PID: $BIZ_PID"
 
+# ── Ensure streamlit is available (auto-install into .chromadb-venv) ────
+ensure_streamlit() {
+    command -v streamlit &>/dev/null && return 0
+    local venv="${REPO_DIR}/.chromadb-venv"
+    if [ -x "${venv}/bin/streamlit" ]; then
+        export PATH="${venv}/bin:${PATH}"
+        return 0
+    fi
+    warn "streamlit not found — installing into ${venv} ..."
+    local py=""
+    for candidate in python3.12 python3.13 python3; do
+        if command -v "${candidate}" &>/dev/null; then py="${candidate}"; break; fi
+    done
+    if [ -z "${py}" ]; then
+        warn "No python3 found — cannot auto-install streamlit."
+        return 1
+    fi
+    "${py}" -m venv "${venv}" \
+        && "${venv}/bin/pip" install --quiet --upgrade pip \
+        && "${venv}/bin/pip" install --quiet streamlit chromadb \
+        && export PATH="${venv}/bin:${PATH}" \
+        && ok "streamlit installed in ${venv}" \
+        || { warn "Failed to install streamlit — ChromaDB Viewer skipped."; return 1; }
+}
+
 # ── Start ChromaDB Viewer ──────────────────────────────────────────────
 echo ""
 echo "=== Starting ChromaDB Viewer on port 8501 ==="
-if command -v streamlit &>/dev/null; then
+if ensure_streamlit; then
     streamlit run scripts/chromadb_viewer.py \
         --server.headless true \
         --server.port 8501 \
@@ -64,7 +89,7 @@ if command -v streamlit &>/dev/null; then
     CHROMA_PID=$!
     ok "ChromaDB Viewer PID: $CHROMA_PID"
 else
-    warn "streamlit not found — ChromaDB Viewer not started. Install with: pip install streamlit"
+    warn "ChromaDB Viewer not started (streamlit unavailable)."
     CHROMA_PID=""
 fi
 
