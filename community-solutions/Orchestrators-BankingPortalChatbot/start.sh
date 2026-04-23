@@ -227,7 +227,6 @@ start_chromadb_viewer() {
         warn "ChromaDB Viewer may still be starting → http://localhost:8501"
         warn "Logs: ${SCRIPT_DIR}/chromadb_viewer.log"
     fi
-    fi
 }
 
 # ── Command handling ──────────────────────────────────────────────────
