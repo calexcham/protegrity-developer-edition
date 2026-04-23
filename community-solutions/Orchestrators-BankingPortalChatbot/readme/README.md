@@ -13,7 +13,7 @@ LLM in clear text. The project ships two complementary applications:
 | **BusinessCustomerApp** | 5003 | End Customers | Self-service banking portal — dashboard, account data, AI chat assistant |
 | **Kuzu Explorer** | 8000 | Engineers / Demos | Graph database browser GUI — explore the Kuzu knowledge graph visually |
 | **pgweb** | 8081 | Engineers / Demos | PostgreSQL browser GUI — view all 4 banking tables (customers, accounts, credit\_cards, transactions) |
-| **ChromaDB Viewer** | 8501 | Engineers / Demos | Streamlit browser — inspect ChromaDB documents and run semantic search queries (local only) |
+| **ChromaDB Viewer** | 8501 | Engineers / Demos | Streamlit browser — inspect ChromaDB documents and run semantic search queries (auto-started by `start.sh`) |
 | **PostgreSQL** | 5432 | Internal (Docker) | Relational banking data store — customer records, accounts, transactions |
 
 Both apps share the same orchestration layer, Protegrity services, and protected
@@ -69,7 +69,7 @@ Both apps are available immediately:
 - **BusinessCustomerApp** → http://localhost:5003/bank/login
 - **Kuzu Explorer** → http://localhost:8000
 - **pgweb (PostgreSQL)** → http://localhost:8081
-- **ChromaDB Viewer** → `streamlit run scripts/chromadb_viewer.py` (local only)
+- **ChromaDB Viewer** → http://localhost:8501 (auto-started by `start.sh`)
 
 ### Local Python (no Docker for apps)
 
@@ -317,7 +317,7 @@ python3 BusinessCustomerApp/run.py # → http://localhost:5003
 | **BusinessCustomerApp** | `http://localhost:5003/bank/login` → `http://localhost:5003/bank/dashboard` |
 | **Kuzu Explorer** | `http://localhost:8000` (Docker only — read-only graph browser) |
 | **pgweb** | `http://localhost:8081` (Docker only — PostgreSQL browser, all 4 tables) |
-| **ChromaDB Viewer** | `streamlit run scripts/chromadb_viewer.py` (local — overview, browse, search) |
+| **ChromaDB Viewer** | `http://localhost:8501` (auto-started by `start.sh` — overview, browse, search) |
 
 > **Tip:** If ports are already in use from a previous run, the `start_apps.sh` script
 > cleans them automatically. To do it manually: `lsof -ti tcp:5002,5003 | xargs kill -9`
