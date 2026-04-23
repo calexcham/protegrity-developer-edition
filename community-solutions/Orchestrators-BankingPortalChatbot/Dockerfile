@@ -7,7 +7,11 @@
 
 FROM python:3.12-slim
 
-# Switch to HTTPS and reliable mirrors to avoid CDN 403 errors
+# Ensure CA certificates are up to date (fixes SSL failures on some Docker hosts)
+RUN apt-get update -qq 2>/dev/null && apt-get install -y --no-install-recommends ca-certificates 2>/dev/null; \
+    rm -rf /var/lib/apt/lists/*
+
+# Use reliable mirrors; fall back to HTTP if HTTPS still fails (e.g. Docker Desktop + proxy)
 RUN printf 'Types: deb\nURIs: https://deb.debian.org/debian\nSuites: trixie trixie-updates\nComponents: main\nSigned-By: /usr/share/keyrings/debian-archive-keyring.gpg\n\nTypes: deb\nURIs: https://deb.debian.org/debian-security\nSuites: trixie-security\nComponents: main\nSigned-By: /usr/share/keyrings/debian-archive-keyring.gpg\n' > /etc/apt/sources.list.d/debian.sources
 
 # Install runtime deps needed by the apps and entrypoint
@@ -16,7 +20,15 @@ RUN apt-get -o Acquire::Retries=5 update \
         curl \
         git \
         netcat-openbsd \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    || { \
+        echo "HTTPS failed — retrying with HTTP mirrors …"; \
+        sed -i 's|https://|http://|g' /etc/apt/sources.list.d/debian.sources; \
+        apt-get -o Acquire::Retries=5 update \
+        && apt-get -o Acquire::Retries=5 install -y --no-install-recommends --fix-missing \
+            curl git netcat-openbsd \
+        && rm -rf /var/lib/apt/lists/*; \
+    }
 
 WORKDIR /app
 
