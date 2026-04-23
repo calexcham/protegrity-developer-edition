@@ -40,7 +40,40 @@ ensure_python() {
 
     echo -e "${YELLOW}⚠${NC}  Python $ver detected — need >= 3.12.11 for Protegrity SDK."
 
-    # Try deadsnakes PPA (Ubuntu/Debian)
+    local os_type
+    os_type=$(uname -s)
+
+    if [[ "$os_type" == "Darwin" ]]; then
+        # ── macOS: use Homebrew ──────────────────────────────────────
+        if command -v brew &>/dev/null; then
+            echo "  Attempting to install Python 3.13 via Homebrew …"
+            if brew install python@3.13 2>/dev/null; then
+                # Homebrew puts it at python3.13 or via the formula's bin
+                local brew_py=""
+                if command -v python3.13 &>/dev/null; then
+                    brew_py="python3.13"
+                else
+                    brew_py="$(brew --prefix python@3.13)/bin/python3.13"
+                fi
+                if [[ -x "$(command -v $brew_py)" ]]; then
+                    local new_ver
+                    new_ver=$($brew_py -c "import sys; print('{}.{}.{}'.format(*sys.version_info[:3]))" 2>/dev/null || echo "0.0.0")
+                    echo -e "${GREEN}✔${NC}  Python $new_ver installed successfully."
+                    PYTHON_CMD="$brew_py"
+                    return 0
+                fi
+            fi
+        fi
+        echo ""
+        echo "  Could not auto-install a compatible Python."
+        echo "  Install Python 3.13 via Homebrew:"
+        echo "    brew install python@3.13"
+        echo "  Or download from https://www.python.org/downloads/"
+        echo "  Then re-run this script."
+        exit 1
+    fi
+
+    # ── Linux: try deadsnakes PPA (Ubuntu/Debian) ───────────────────
     if command -v apt-get &>/dev/null; then
         echo "  Attempting to install a compatible Python via deadsnakes PPA …"
         sudo add-apt-repository -y ppa:deadsnakes/ppa 2>/dev/null || true
@@ -92,6 +125,11 @@ if [ -z "${VIRTUAL_ENV:-}" ]; then
             # Auto-install python3-venv if missing
             PYVER=$("$PYTHON_CMD" -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
             echo "python3-venv not found — installing …"
+            if [[ "$(uname -s)" == "Darwin" ]]; then
+                echo -e "${RED}✖${NC} venv module missing. Reinstall Python via Homebrew:"
+                echo "    brew install python@${PYVER}"
+                exit 1
+            fi
             sudo apt-get update -qq 2>/dev/null
             sudo apt-get install -y "python${PYVER}-venv" 2>/dev/null \
                 || sudo apt-get install -y python3-venv 2>/dev/null \

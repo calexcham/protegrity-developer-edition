@@ -99,7 +99,42 @@ check_python_version() {
     if (( major < 3 || (major == 3 && minor < 12) || (major == 3 && minor == 12 && patch < 11) )); then
         warn "Python $ver detected. protegrity-developer-python >= 1.1.0 requires Python >= 3.12.11."
 
-        # Try to auto-install a compatible Python via deadsnakes PPA (Ubuntu/Debian)
+        local os_type
+        os_type=$(uname -s)
+
+        if [[ "$os_type" == "Darwin" ]]; then
+            # ── macOS: use Homebrew ──────────────────────────────────
+            if command -v brew &>/dev/null; then
+                info "Attempting to install Python 3.13 via Homebrew …"
+                if brew install python@3.13 2>/dev/null; then
+                    local brew_py=""
+                    if command -v python3.13 &>/dev/null; then
+                        brew_py="python3.13"
+                    else
+                        brew_py="$(brew --prefix python@3.13)/bin/python3.13"
+                    fi
+                    if [[ -x "$(command -v $brew_py)" ]]; then
+                        local new_ver_mac
+                        new_ver_mac=$($brew_py -c "import sys; print('{}.{}.{}'.format(*sys.version_info[:3]))" 2>/dev/null || echo "0.0.0")
+                        ok "Python $new_ver_mac installed successfully."
+                        PYTHON_BIN="$brew_py"
+                        return 0
+                    fi
+                fi
+            fi
+            echo ""
+            echo "  Could not auto-install a compatible Python."
+            echo "  Install Python 3.13 via Homebrew:"
+            echo "    brew install python@3.13"
+            echo "  Or download from https://www.python.org/downloads/"
+            echo ""
+            echo "    # Then re-run:"
+            echo "    bash scripts/setup_env.sh --python python3.13"
+            echo ""
+            fail "Python >= 3.12.11 is required."
+        fi
+
+        # ── Linux: try deadsnakes PPA (Ubuntu/Debian) ───────────────
         if command -v apt-get &>/dev/null; then
             sudo add-apt-repository -y ppa:deadsnakes/ppa 2>/dev/null || true
             sudo apt-get update -qq 2>/dev/null || true
@@ -208,10 +243,13 @@ setup_venv() {
     else
         info "Creating venv at ${VENV_DIR} …"
         "$py" -m venv "$VENV_DIR" || {
-            # On Debian/Ubuntu, python3-venv may need to be installed separately
             local pyver
             pyver=$("$py" -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
             warn "venv creation failed. Attempting to install python${pyver}-venv …"
+            if [[ "$(uname -s)" == "Darwin" ]]; then
+                fail "venv module missing. Reinstall Python via Homebrew: brew install python@${pyver}"
+            fi
+            # On Debian/Ubuntu, python3-venv may need to be installed separately
             sudo apt-get install -y "python${pyver}-venv" 2>/dev/null \
                 || sudo apt-get install -y python3-venv 2>/dev/null \
                 || fail "Could not install python3-venv. Please install it manually."

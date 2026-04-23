@@ -71,7 +71,12 @@ wait_for_protegrity() {
     info "Waiting for Protegrity services to be ready (timeout ${PTY_WAIT_TIMEOUT}s) ..."
     # Use TCP check (nc) rather than curl -f: a 4xx HTTP response means the
     # service is alive, but curl -f treats 4xx as failure (non-zero exit code).
-    until nc -z -w 3 localhost 8580 2>/dev/null; do
+    # BSD netcat (macOS) uses -G for connect timeout; GNU uses -w
+    local nc_cmd="nc -z -w 3"
+    if [[ "$(uname -s)" == "Darwin" ]]; then
+        nc_cmd="nc -z -G 3"
+    fi
+    until $nc_cmd localhost 8580 2>/dev/null; do
         if [ "${elapsed}" -ge "${PTY_WAIT_TIMEOUT}" ]; then
             warn "Protegrity services did not respond within ${PTY_WAIT_TIMEOUT}s."
             warn "The apps will start in degraded mode (PII protection unavailable)."
