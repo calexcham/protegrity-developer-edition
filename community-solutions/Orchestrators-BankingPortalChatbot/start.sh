@@ -203,26 +203,30 @@ start_chromadb_viewer() {
         echo "${chroma_pids}" | xargs kill 2>/dev/null || true
         sleep 1
     fi
+
+    # Ensure streamlit + chromadb are available BEFORE trying to rebuild
+    if ! ensure_streamlit; then
+        warn "ChromaDB Viewer not started (streamlit unavailable)."
+        return 0
+    fi
+
     # Auto-build the ChromaDB index if it doesn't exist yet (fresh clone)
     if [ ! -d "${SCRIPT_DIR}/chroma_db" ]; then
         info "chroma_db/ not found — building index from knowledge base ..."
         python3 scripts/browse_chromadb.py rebuild 2>&1 || warn "ChromaDB rebuild failed — viewer may show empty data."
     fi
 
-    if ensure_streamlit; then
-        streamlit run scripts/chromadb_viewer.py \
-            --server.headless true \
-            --server.port 8501 \
-            2>"${SCRIPT_DIR}/chromadb_viewer.log" &
-        sleep 3
-        if lsof -i tcp:8501 -sTCP:LISTEN &>/dev/null 2>&1; then
-            ok "ChromaDB Viewer is healthy   → http://localhost:8501"
-        else
-            warn "ChromaDB Viewer may still be starting → http://localhost:8501"
-            warn "Logs: ${SCRIPT_DIR}/chromadb_viewer.log"
-        fi
+    streamlit run scripts/chromadb_viewer.py \
+        --server.headless true \
+        --server.port 8501 \
+        2>"${SCRIPT_DIR}/chromadb_viewer.log" &
+    sleep 3
+    if lsof -i tcp:8501 -sTCP:LISTEN &>/dev/null 2>&1; then
+        ok "ChromaDB Viewer is healthy   → http://localhost:8501"
     else
-        warn "ChromaDB Viewer not started (streamlit unavailable)."
+        warn "ChromaDB Viewer may still be starting → http://localhost:8501"
+        warn "Logs: ${SCRIPT_DIR}/chromadb_viewer.log"
+    fi
     fi
 }
 
