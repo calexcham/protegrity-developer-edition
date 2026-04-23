@@ -76,6 +76,15 @@ check_docker() {
         echo "  → https://docs.docker.com/get-docker/"
         return 1
     fi
+    # Distinguish "permission denied" from "daemon not running"
+    local docker_err
+    docker_err=$(docker info 2>&1) || true
+    if echo "$docker_err" | grep -qi "permission denied"; then
+        error "Docker socket permission denied."
+        echo "  Fix with:  sudo usermod -aG docker \$USER && newgrp docker"
+        echo "  Then re-run this script."
+        return 1
+    fi
     if ! docker info &>/dev/null; then
         error "Docker daemon is not running. Please start Docker."
         return 1

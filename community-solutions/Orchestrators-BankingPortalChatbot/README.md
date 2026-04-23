@@ -92,6 +92,10 @@ bash scripts/start_apps.sh
 
 - **Python 3.12.11+** (required by `protegrity-developer-python >= 1.1.0`; 3.13 also supported)
 - **Docker** + **Docker Compose ≥ 2.30** (for Protegrity containers)
+  > On Linux, your user must be in the `docker` group to avoid permission errors:
+  > ```bash
+  > sudo usermod -aG docker $USER && newgrp docker
+  > ```
 - **Git**
 - **LLM API keys** — at least one of:
   - [OpenAI](https://platform.openai.com/) (`OPENAI_API_KEY`)
