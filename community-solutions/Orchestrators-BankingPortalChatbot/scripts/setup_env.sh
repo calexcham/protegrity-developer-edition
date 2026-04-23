@@ -97,8 +97,38 @@ check_python_version() {
     IFS='.' read -r major minor patch <<< "$ver"
     patch="${patch:-0}"
     if (( major < 3 || (major == 3 && minor < 12) || (major == 3 && minor == 12 && patch < 11) )); then
-        fail "Python $ver detected. protegrity-developer-python >= 1.1.0 requires Python >= 3.12.11.
-       Install Python 3.12.11+ or pass --python /path/to/python3.12"
+        warn "Python $ver detected. protegrity-developer-python >= 1.1.0 requires Python >= 3.12.11."
+
+        # Try to auto-install Python 3.12.11+ via deadsnakes PPA (Ubuntu/Debian)
+        if command -v apt-get &>/dev/null; then
+            info "Attempting to install Python 3.12 via deadsnakes PPA …"
+            if sudo add-apt-repository -y ppa:deadsnakes/ppa 2>/dev/null \
+               && sudo apt-get update -qq 2>/dev/null \
+               && sudo apt-get install -y python3.12 python3.12-venv python3.12-dev 2>/dev/null; then
+                local new_ver
+                new_ver=$(python3.12 -c "import sys; print('{}.{}.{}'.format(*sys.version_info[:3]))" 2>/dev/null || echo "0.0.0")
+                local nma nmi npa
+                IFS='.' read -r nma nmi npa <<< "$new_ver"
+                npa="${npa:-0}"
+                if (( nma >= 3 && nmi >= 12 && npa >= 11 )); then
+                    ok "Python $new_ver installed successfully."
+                    PYTHON_BIN="python3.12"
+                    return 0
+                fi
+            fi
+        fi
+
+        echo ""
+        echo "  To fix this, install Python 3.12.11+ manually:"
+        echo ""
+        echo "    # Ubuntu / Debian (deadsnakes PPA)"
+        echo "    sudo add-apt-repository ppa:deadsnakes/ppa"
+        echo "    sudo apt-get update && sudo apt-get install -y python3.12 python3.12-venv"
+        echo ""
+        echo "    # Then re-run:"
+        echo "    bash scripts/setup_env.sh --python python3.12"
+        echo ""
+        fail "Python >= 3.12.11 is required."
     fi
     ok "Python $ver — version requirement satisfied."
 }

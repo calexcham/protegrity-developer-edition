@@ -91,6 +91,12 @@ bash scripts/start_apps.sh
 ## Prerequisites
 
 - **Python 3.12.11+** (required by `protegrity-developer-python >= 1.1.0`; 3.13 also supported)
+  > On Ubuntu/Debian, if your system Python is older, install from the deadsnakes PPA:
+  > ```bash
+  > sudo add-apt-repository ppa:deadsnakes/ppa
+  > sudo apt-get update && sudo apt-get install -y python3.12 python3.12-venv
+  > bash scripts/setup_env.sh --python python3.12
+  > ```
 - **Docker** + **Docker Compose ≥ 2.30** (for Protegrity containers)
   > On Linux, your user must be in the `docker` group to avoid permission errors:
   > ```bash
