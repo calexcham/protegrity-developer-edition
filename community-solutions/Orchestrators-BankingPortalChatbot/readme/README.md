@@ -19,6 +19,8 @@ LLM in clear text. The project ships two complementary applications:
 Both apps share the same orchestration layer, Protegrity services, and protected
 customer dataset (`customers_protected.json`).
 
+![Secure AI orchestration with Protegrity](images/Orchestrator.png)
+
 ---
 
 ## Table of Contents
